@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+}
+
+.main, .footer{
+    height: 3000px;
+    width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+    /* border: 1px solid black; */
+
+}
+.head{
+    margin: 0 auto;
+    width: 1200px;
+    height: 250px;
+    /* border: 1px solid blue; */
+}
+.line{
+    width: 1155px;
+    margin: 0 auto;
+    margin-top: 5px;
+    border-bottom: 2.5px solid rgb(1,67,115);
+}
+/* Секция nav в header */
+
+.name_head{
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+}
+.name_head{
+    cursor: pointer;
+}
+.name_head img{
+    width: 100px;
+    height: 100px;
+    margin-left: 15px;
+    margin-top: 2px;
+    animation: img_head 0.7s ease-out;
+}
+.name_head p{
+    color:  rgb(1,67,115);
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 30px;
+    animation: img_head 0.7s ease-out;
+}
+
+@keyframes img_head{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.nav{
+    /* position: relative; */
+    display: flex;
+    justify-content: right;
+    /* bottom: 110px;
+    right: 35px; */
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style-type: none;
+}
+
+/* Навигация */
+.navigation{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: right;
+    position: relative;
+    right: 25px;
+    bottom: 80px;
+    align-items: center;
+}
+
+.nav_a{
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.nav_a a{
+    color: rgb(1,67,115);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    transition: 0.6s ease;
+}
+.nav_a a:hover{
+    color: white;
+    background-color: rgb(1,67,115);
+}
+
+.menu_a{
+    color: white;
+    font-size: 12px; 
+}
+.dv_a{
+    background-color: rgb(1,67,115);
+    border-radius: 11px;
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.inp_dv{
+    display: flex;
+    justify-content: center;
+}
+.inp_dv img{
+    width: 20px;
+    height: 20px;
+    margin-top: 8px;
+    position: relative;
+    right: 25px;
+    cursor: pointer;
+}
+
+.input_head{
+    width: 500px;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    border: 1.5px solid rgb(2, 83, 140);
+    color: rgb(3, 99, 167);
+}
+.input_head::placeholder{
+    color: rgb(3, 55, 93);
+}
+.input_head:focus{
+    outline: none;
+    box-shadow: 0px 0px 5px 2px rgb(196, 196, 246);
+}
+/* Секция с основной информацией */
+.main{
+    border-top: 2px solid rgb(1,67,115);
+    /* background-color: rgb(1,67,115); */
+}
