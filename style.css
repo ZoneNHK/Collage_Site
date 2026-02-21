@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    font-family: sans-serif;
+    font-family: 'Golos Text', sans-serif;
 }
 
 .main, .footer{
@@ -147,8 +147,48 @@ li{
     outline: none;
     box-shadow: 0px 0px 5px 2px rgb(196, 196, 246);
 }
+
+/* Секция для меню */
+.wind_menu{
+    position: relative;
+    bottom: 130px;
+    width: 1200px;
+    height: 350px;
+    border-radius: 5px;
+    background-color: rgb(1,67,115);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.choice_menu{
+    width: 30%;
+    height: 350px;
+    border: 2px solid white;
+}
+.output_menu{
+}
+.menu_but{
+    color: white;
+    font-family: Golos, Open Sans, Arial, sans-serif;
+    height: 70px;
+    width: 350px;
+    margin-left: 5px;
+    border: none;
+    background-color: rgb(1,67,115);
+}
+#exit_but{
+    width: 55px;
+    height: 27px;
+    margin: 10px;
+    background-color: white;
+    /* color: rgb(1,67,115); */
+    font-size: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
 /* Секция с основной информацией */
 .main{
-    border-top: 2px solid rgb(1,67,115);
-    /* background-color: rgb(1,67,115); */
+
 }
