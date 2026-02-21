@@ -199,38 +199,114 @@ li{
     padding: 0 20px;
     margin: 0 auto;
     border-radius: 10px;
+    background-color: #f0f2f5;
+    /* background-color: rgb(2, 83, 140); */
+}
+
+.main h2{
+    font-size: 35px;
+    color: rgb(2, 83, 140);
+    padding: 30px;
+}
+
+.news{
+    width: 800px;
+    border: 1px solid white;
+}
+.footer{
+    width: 1200px;
+    height: 350px;
+    padding: 0 20px;
+    margin: 0 auto;
     background-color: rgb(2, 83, 140);;
 }
-.main h2{
-    font-size: 25px;
-    color: white;
-    padding: 20px;
-}
-.link_image{
+
+/* Секция с ссылками */
+.links_div{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 55px;
     margin-top: 55px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 15px;
 }
-.link_image a{
+.bottom{
     display: flex;
-    justify-content: right;
+    flex-direction: row;
+    gap: 65px;
+    padding-bottom: 20px;
+}
+.links_div a{
+    display: flex;
+    justify-content: center;
+}
+.links_div h2{
+    font-size: 35px;
+    color: rgb(2, 83, 140);
+    padding: 30px;    
 }
 .img_l{
-    display: flex;
     border-radius: 10px;
     width: 350px;
+    height: 180px;
     transition: 0.5s ease-in-out;
 }
 .img_l:hover{
-    transform: scale(1.03);
-    box-shadow: 0px 0px 5px 0px white;
+    transform: scale(1.02);
 }
 
-.footer{
-    height: 3000px;
-    width: 1200px;
-    padding: 0 20px;
-    margin: 0 auto;
+/* Новости */
+.news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
 }
+
+.news_card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.news_card:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.news_img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.news_text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.news_date {
+    font-size: 11px;
+    color: rgb(1, 67, 115);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.footer h2{
+    color: white;
+    padding: 20px;
+    font-size: 35px;
+}
+
