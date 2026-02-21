@@ -7,36 +7,35 @@
     <link rel="icon" href="image/title_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="scripts.js" defer></script>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Шапка -->
     <header class="head">
 
         <div class="line"></div>
-        
+
         <div class="name_head">
             <img src="image/main_icon.jpg" alt="Изображение не найдено">
             <p>Донбасский государственный <br> технический университет</p>
         </div>
 
         <section class="navigation">
+
             <nav class="nav_a">
                 <a href="#">Абитуриентам</a>
                 <a href="#">Студентам</a>
-                <a href="#">Контакты</a>
+                <a href="#ft">Контакты</a>
             </nav>
 
-            <nav class="nav">
-                <ul class="nav_it">
-                    <div class="dv_a">
-                        <button class="menu_a">Меню =</button>
-                        <!-- <a class="menu_a" href="#">Меню =</a> -->
-                    </div>
-                </ul>
-            </nav>
+            <button class="menu_a">Меню =</button>
+
         </section>
+
+        <div class="inp_dv">
+            <input type="text" placeholder="Введите запрос" class="input_head">
+            <img id="icon_search" src="image/search_icon.png" alt="Изображение не найдено">
+        </div>
+
         <section class="wind_menu">
             <!-- Выбор-->
             <div class="choice_menu">
@@ -53,20 +52,28 @@
                 <button id="exit_but">Закрыть</button>
             </div>
         </section>
-        <div class="inp_dv">
-            <input type="text" placeholder="Введите запрос" class="input_head">
-            <img src="image/search_icon.png" alt="Изображение не найдено">
-        </div>
     </header>
 
     <!-- Основаная информация -->
     <main class="main">
         <h2>Новости</h2>
+        <div class="main_container">
+            <!-- Новости -->
+            <div class="news">
+
+            </div>
+            <!-- Ссылки -->
+            <div class="link_image">
+                <a target="_blank" href="https://forms.yandex.ru/u/68dfabf7505690487f6e8e45"><img src="image/anketa.jpg" alt="Не найдено" class="img_l"></a>
+                <a target="_blank" href="http://alit.dontu.ru/studentu/zameny"><img src="image/rasp.jpg" alt="Не найдено" class="img_l"></a>
+                <a target="_blank" href="https://alit.dontu.ru/studentu/raspisanie-zanyatij"><img src="image/zameny.jpg" alt="Не найдено" class="img_l"></a>
+                <a target="_blank" href="https://alit.dontu.ru/nasha-deyatelnost/uchebnaya-deyatelnost/2485-biblioteka"><img src="image/biblio-3.jpg" alt="Не найдено" class="img_l"></a>
+            </div>
+        </div>
     </main>
 
     <!-- Подвал -->
-    <footer class="footer">
-
+    <footer class="footer" id="ft">
     </footer>
 </body>
 </html>

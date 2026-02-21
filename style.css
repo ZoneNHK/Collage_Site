@@ -1,25 +1,18 @@
+@font-face {
+    font-family: 'Colos Text';
+    src: url(fonts/GolosText-Regular.ttf);
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-body{
-    font-family: 'Golos Text', sans-serif;
+    font-family: 'Colos Text', sans-serif;
 }
 
-.main, .footer{
-    height: 3000px;
-    width: 1200px;
-    padding: 0 20px;
-    margin: 0 auto;
-    /* border: 1px solid black; */
-
-}
 .head{
     margin: 0 auto;
     width: 1200px;
     height: 250px;
-    /* border: 1px solid blue; */
 }
 .line{
     width: 1155px;
@@ -62,11 +55,8 @@ body{
 }
 
 .nav{
-    /* position: relative; */
     display: flex;
     justify-content: right;
-    /* bottom: 110px;
-    right: 35px; */
 }
 a{
     text-decoration: none;
@@ -108,30 +98,33 @@ li{
 
 .menu_a{
     color: white;
-    font-size: 12px; 
-}
-.dv_a{
+    font-size: 11px; 
     background-color: rgb(1,67,115);
     border-radius: 11px;
     width: 100px;
     height: 25px;
     text-align: center;
-    padding-top: 2px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    border: none;
 }
-
+.menu_a:hover{
+    background-color: rgb(5, 105, 177);
+}
 .inp_dv{
+
     display: flex;
+    position: relative;
     justify-content: center;
 }
-.inp_dv img{
+#icon_search{
     width: 20px;
     height: 20px;
     margin-top: 8px;
-    position: relative;
-    right: 25px;
+    position: absolute;
     cursor: pointer;
+    left: 820px;
 }
-
 .input_head{
     width: 500px;
     height: 35px;
@@ -150,45 +143,94 @@ li{
 
 /* Секция для меню */
 .wind_menu{
+    transform: translateY(-120%);
+    display: flex;
     position: relative;
     bottom: 130px;
     width: 1200px;
     height: 350px;
     border-radius: 5px;
-    background-color: rgb(1,67,115);
-    display: flex;
+    background-color: rgb(5, 105, 177); 
     flex-direction: row;
     justify-content: space-between;
     border-radius: 10px;
+    transition: 0.5s ease-in-out;
+}
+.wind_menu.active{
+    transform: translateY(-10%);
 }
 .choice_menu{
     width: 30%;
     height: 350px;
-    border: 2px solid white;
 }
 .output_menu{
 }
 .menu_but{
     color: white;
-    font-family: Golos, Open Sans, Arial, sans-serif;
-    height: 70px;
-    width: 350px;
+    height: 69px;
+    width: 345px;
     margin-left: 5px;
     border: none;
-    background-color: rgb(1,67,115);
+    border-radius: 8px;
+    background-color: rgb(5, 105, 177);
+    transition: 0.5s ease-in-out;
+}
+.menu_but:hover{
+    background-color: rgb(4, 97, 163);
 }
 #exit_but{
-    width: 55px;
-    height: 27px;
+    width: 60px;
+    height: 25px;
     margin: 10px;
     background-color: white;
-    /* color: rgb(1,67,115); */
-    font-size: 12px;
+    color: rgb(1,67,115);
+    font-size: 11px;
     border: none;
     border-radius: 8px;
-    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+#exit_but:hover{
+    background-color: rgb(213, 209, 209);
 }
 /* Секция с основной информацией */
 .main{
+    height: 1000px;
+    width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgb(2, 83, 140);;
+}
+.main h2{
+    font-size: 25px;
+    color: white;
+    padding: 20px;
+}
+.link_image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 55px;
+    margin-top: 55px;
+}
+.link_image a{
+    display: flex;
+    justify-content: right;
+}
+.img_l{
+    display: flex;
+    border-radius: 10px;
+    width: 350px;
+    transition: 0.5s ease-in-out;
+}
+.img_l:hover{
+    transform: scale(1.03);
+    box-shadow: 0px 0px 5px 0px white;
+}
 
+.footer{
+    height: 3000px;
+    width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
 }
