@@ -14,6 +14,19 @@ document.addEventListener('keydown', e =>{
     }
 })
 
+search_dv = document.querySelector('.div_search');
+document.querySelector('.input_head').addEventListener('click', ()=>{
+    search_dv.classList.toggle('activeSearch');
+})
+document.querySelector('.input_head').addEventListener('blur', ()=>{
+    search_dv.classList.remove('activeSearch');
+})
+document.addEventListener('keydown', e =>{
+    if (e.key === 'Escape'){
+        search_dv.classList.remove('activeSearch');
+    }
+})
+
 async function getNews() {
     const response = await fetch("http://127.0.0.1:8000/news");
     const posts = await response.json();
