@@ -27,6 +27,40 @@ document.addEventListener('keydown', e =>{
     }
 })
 
+let i = 1;
+let img_src = document.querySelector('#img_src');
+let func_img = setInterval(()=>{
+    img_src.style.opacity = '0.5'; 
+    setTimeout(()=>{
+        img_src.src = "image/zavod" + i + ".jpg";
+        img_src.style.opacity = '1';
+        i += 1;
+        if (i > 4){
+            i = 1;
+        }
+    }, 500);
+}, 5000)
+
+document.querySelector('#studs').addEventListener('mouseover', ()=>{
+    let lst = document.querySelector('.stud_list');
+    lst.classList.add('active_lst');
+})
+document.querySelector('#studs').addEventListener('mouseout', ()=>{
+    let lst = document.querySelector('.stud_list');
+    lst.classList.remove('active_lst');
+})
+
+
+document.querySelector('#abits').addEventListener('mouseover', ()=>{
+    let lst = document.querySelector('.abitur_list');
+    lst.classList.add('active_lst');
+})
+document.querySelector('#abits').addEventListener('mouseout', ()=>{
+    let lst = document.querySelector('.abitur_list');
+    lst.classList.remove('active_lst');
+})
+
+
 async function getNews() {
     const response = await fetch("http://127.0.0.1:8000/news");
     const posts = await response.json();
