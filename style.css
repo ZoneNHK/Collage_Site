@@ -25,8 +25,6 @@
     display: flex;
     flex-direction: row;
     width: 250px;
-}
-.name_head{
     cursor: pointer;
 }
 .name_head img{
@@ -177,7 +175,6 @@ li{
     border-radius: 5px;
     background-color: rgb(5, 105, 177); 
     flex-direction: row;
-    justify-content: space-between;
     border-radius: 10px;
     transition: 0.5s ease-in-out;
 }
@@ -187,6 +184,7 @@ li{
 .choice_menu{
     width: 30%;
     height: 350px;
+    border-right: 1px solid white;
 }
 .output_menu{
 }
@@ -219,6 +217,52 @@ li{
 #exit_but:hover{
     color: rgb(4, 97, 163);
 }
+.links_menu{
+    display: flex;
+    width: 750px;
+    height: 350px;
+    justify-content: left;
+
+}
+
+.child_link{
+    display: flex;
+    flex-direction: column;
+}
+.child_link a{
+    margin: 12px;
+    color: white;
+}
+#studs_link{
+    display: none;
+    margin-left: 15px;
+}
+#abitur_links{
+    display: block;
+    margin-left: 15px;
+}
+#info_links{
+    display: none;
+    margin-left: 15px;
+}
+#diatl_links{
+    display: none;
+    gap: 25px;
+    margin-left: 15px;
+    flex-direction: row;
+}
+#sved_links{
+    display: none;
+    gap: 25px;
+    margin-left: 15px;
+    flex-direction: row;
+}
+#studs_link.active_link, #abitur_links.active_link, #info_links.active_link{
+    display: block;
+}
+#diatl_links.active2_link, #sved_links.active2_link{
+    display: flex;
+}
 /* Секция с основной информацией */
 .main{
     height: 1000px;
@@ -238,13 +282,6 @@ li{
 .news{
     width: 800px;
     border: 1px solid white;
-}
-.footer{
-    width: 1200px;
-    height: 350px;
-    padding: 0 20px;
-    margin: 0 auto;
-    background-color: rgb(2, 83, 140);
 }
 
 /* Секция с ссылками */
@@ -388,9 +425,27 @@ li{
     font-weight: bold;
 }
 
-.footer h2{
-    color: white;
-    padding: 20px;
-    font-size: 35px;
+.footer{
+    display: flex;
+    width: 1200px;
+    height: 100px;
+    padding: 0 20px;
+    margin: 0 auto;
+    color: white; 
+    justify-content: space-between;
+    background-color: rgb(2, 83, 140);
 }
-
+#img_footer{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+#img_footer img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-top: 63px;
+}
+#p_footer{
+    margin-top: 80px;
+}
