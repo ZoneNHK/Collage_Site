@@ -59,12 +59,12 @@
         <section class="wind_menu">
             <!-- Выбор-->
             <div class="choice_menu">
-                <ul>
-                    <li><button class="menu_but">Студенту</button></li>
-                    <li><button class="menu_but">Абитуриенту</button></li>
-                    <li><button class="menu_but">Наша деятельность</button></li>
-                    <li><button class="menu_but">Информация о колледже</button></li>
-                    <li><button class="menu_but">Сведения об организации</button></li>
+                <ul class="chice_lst">
+                    <li><button id="but1" class="menu_but" data-target="studs_link">Студенту</button></li>
+                    <li><button id="but2" class="menu_but" data-target="abitur_links">Абитуриенту</button></li>
+                    <li><button id="but3" class="menu_but" data-target="diatl_links">Наша деятельность</button></li>
+                    <li><button id="but4" class="menu_but" data-target="info_links">Информация о колледже</button></li>
+                    <li><button id="but5" class="menu_but" data-target="sved_links">Сведения об организации</button></li>
                 </ul>
             </div>
             <!-- Вывод информации -->
@@ -127,11 +127,6 @@
                         <a href="https://alit.dontu.ru/sveden/paidedu">Платные образовательные услуги</a>
                         <a href="https://alit.dontu.ru/sveden/budget">Финансово-хозяйственная деятельность</a>
                     </div>
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/sveden/vacant">Вакантные места для приема обучающихся</a>
-                        <a href="https://alit.dontu.ru/sveden/ovz">Доступная среда</a>
-                        <a href="https://alit.dontu.ru/sveden/portfolio">Портфолио</a>
-                    </div>
                 </div>
             </div>
             <div>
@@ -166,18 +161,110 @@
 
         </div>
     </main>
-
+    <div class="stats">
+        <div class="stat_item">
+            <span class="stat_number">500+</span>
+            <span class="stat_label">Студентов</span>
+        </div>
+        <div class="stat_item">
+            <span class="stat_number">13</span>
+            <span class="stat_label">Специальностей</span>
+        </div>
+        <div class="stat_item">
+            <span class="stat_number">20+</span>
+            <span class="stat_label">Преподавателей</span>
+        </div>
+        <div class="stat_item">
+            <span class="stat_number">2013</span>
+            <span class="stat_label">Год основания</span>
+        </div>
+    </div>
     <section class="links_div">
-
-        <div class="top">
-            <h2>Полезное</h2>
-        </div>
-
         <div class="bottom">
-            <a target="_blank" href="https://forms.yandex.ru/u/68dfabf7505690487f6e8e45"><img src="image/anketa.jpg" alt="Не найдено" class="img_l"></a>
-            <a target="_blank" href="http://alit.dontu.ru/studentu/zameny"><img src="image/rasp.jpg" alt="Не найдено" class="img_l"></a>
-            <a target="_blank" href="https://alit.dontu.ru/studentu/raspisanie-zanyatij"><img src="image/zameny.jpg" alt="Не найдено" class="img_l"></a>    </section>
+            <!-- Строительство -->
+            <div class="card_info">
+                <div><img src="image/card_info/1.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2075-mto-3" target="_blank"><h2>Строители</h2></a>
+                    <p>Специалисты по возведению и реконструкции зданий и сооружений. Работают с современными строительными материалами и технологиями.</p>
+                </div>
+            </div>
+            <!-- Программирование -->
+            <div class="card_info">
+                <div><img src="image/card_info/2.png" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/87-pks" target="_blank"><h2>Программисты</h2></a>
+                    <p>Разработчики программного обеспечения и компьютерных систем. Осваивают актуальные языки программирования и работу с базами данных.</p>
+                </div>
+            </div>
+            <!-- Электрики -->
+            <div class="card_info">
+                <div><img src="image/card_info/3.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/81-teo" target="_blank"><h2>Электрики</h2></a>
+                    <p>Специалисты по монтажу и обслуживанию электрооборудования. Востребованы на промышленных предприятиях и в сфере ЖКХ.</p>
+                </div>
+            </div>
+            <!-- Монтажники -->
+            <div class="card_info">
+                <div><img src="image/card_info/4.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/85-mto" target="_blank"><h2>Монтажники</h2></a>
+                    <p>Профессионалы по установке и наладке технологического оборудования. Работают на производственных и строительных объектах.</p>
+                </div>
+            </div>
+            <!-- Сварщики -->
+            <div class="card_info">
+                <div><img src="image/card_info/5.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2074-mto-2" target="_blank"><h2>Сварщики</h2></a>
+                    <p>Мастера соединения металлических конструкций различными методами сварки. Незаменимы в машиностроении, строительстве и металлургии.</p>
+                </div>
+            </div>
+            <!-- Металлургическое производство -->
+            <div class="card_info">
+                <div><img src="image/card_info/6.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/82-mchm" target="_blank"><h2>Металлурги</h2></a>
+                    <p>Специалисты по производству и обработке металлов. Работают на крупных промышленных предприятиях металлургической отрасли.</p>
+                </div>
+            </div>
+            <!-- Экономика и бухгалтерский учет -->
+            <div class="card_info">
+                <div><img src="image/card_info/7.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/86-ep" target="_blank"><h2>Экономисты</h2></a>
+                    <p>Специалисты в области финансов, учёта и экономического анализа. Востребованы в организациях любой сферы деятельности.</p>
+                </div>
+            </div>
+            <!-- Юриспруденция -->
+            <div class="card_info">
+                <div><img src="image/card_info/8.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2076-mto-4" target="_blank"><h2>Юристы</h2></a>
+                    <p>Специалисты в области права и законодательства. Работают в государственных структурах, юридических фирмах и на предприятиях.</p>
+                </div>
+            </div>
+            <!-- Мастер отделочных строительных и декоративных работ -->
+            <div class="card_info">
+                <div><img src="image/card_info/9.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2078-ep-2" target="_blank"><h2>Мастера отделки</h2></a>
+                    <p>Профессионалы по внутренней и декоративной отделке помещений. Владеют современными материалами и техниками оформления интерьеров.</p>
+                </div>
+            </div>
+            <!-- Мастер по ремонту и обслуживанию авто -->
+            <div class="card_info">
+                <div><img src="image/card_info/10.jpg" alt="Не найдено"></div>
+                <div class="right_card">
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2081-ep-5" target="_blank"><h2>Автомеханики</h2></a>
+                    <p>Специалисты по диагностике, ремонту и обслуживанию автомобилей. Работают на станциях технического обслуживания и автопредприятиях.</p>
+                </div>
+            </div>
         </div>
+    </section>
+
+
     <!-- Подвал -->
     <footer class="footer" id="ft">
         <div id="p_footer">

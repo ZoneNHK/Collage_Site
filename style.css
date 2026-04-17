@@ -186,8 +186,6 @@ li{
     height: 350px;
     border-right: 1px solid white;
 }
-.output_menu{
-}
 .menu_but{
     color: white;
     height: 69px;
@@ -217,6 +215,11 @@ li{
 #exit_but:hover{
     color: rgb(4, 97, 163);
 }
+
+.output_menu{
+    width: 750px;
+    height: 350px;
+}
 .links_menu{
     display: flex;
     width: 750px;
@@ -224,7 +227,6 @@ li{
     justify-content: left;
 
 }
-
 .child_link{
     display: flex;
     flex-direction: column;
@@ -232,18 +234,33 @@ li{
 .child_link a{
     margin: 12px;
     color: white;
+    height: 20px;
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
 }
 #studs_link{
     display: none;
     margin-left: 15px;
 }
 #abitur_links{
-    display: block;
+    display: none;
     margin-left: 15px;
 }
 #info_links{
     display: none;
+    flex-direction: column;
+    margin: 12px;
+}
+#info_links a{
+    color: white;
+    height: 60px;
     margin-left: 15px;
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
+}
+
+.child_link a:hover, #info_links a:hover{
+    text-decoration: underline;
 }
 #diatl_links{
     display: none;
@@ -255,14 +272,14 @@ li{
     display: none;
     gap: 25px;
     margin-left: 15px;
+    margin: 12px;
     flex-direction: row;
 }
-#studs_link.active_link, #abitur_links.active_link, #info_links.active_link{
-    display: block;
-}
-#diatl_links.active2_link, #sved_links.active2_link{
+
+#studs_link.active_link, #abitur_links.active_link, #info_links.active_link, #diatl_links.active_link, #sved_links.active_link{
     display: flex;
 }
+
 /* Секция с основной информацией */
 .main{
     height: 1000px;
@@ -289,41 +306,62 @@ li{
     display: flex;
     flex-direction: column;
     margin-top: 55px;
-    width: 1200px;
+    width: 1300px;
+    height: auto;
     margin: 0 auto;
     padding-bottom: 15px;
 }
 .bottom{
     display: flex;
     flex-direction: row;
-    gap: 65px;
+    gap: 35px;
+    width: 1300px;
     padding-bottom: 20px;
+    margin-top: 25px;
+    overflow: hidden;
+    /* overflow-y: auto; */
 }
-.links_div a{
+.card_info{
     display: flex;
-    justify-content: center;
-}
-.links_div h2{
-    font-size: 35px;
-    color: rgb(2, 83, 140);
-    padding: 30px;    
-}
-.img_l{
-    border-radius: 10px;
-    width: 350px;
-    height: 180px;
+    gap: 10px;
+    width: 550px;
+    flex-direction: row;
+    padding: 10px;
     transition: 0.5s ease-in-out;
+    border-radius: 10px;
+    background-color: #f0f2f5;
 }
-.img_l:hover{
+.card_info:hover{
     transform: scale(1.02);
 }
-
-
+.card_info img{
+    width: 260px;
+    height: 220px;
+    padding-top: 5px;
+    border-radius: 10px;
+}
+.right_card{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.right_card p{
+    font-size: 13px;
+    color:#444;
+}
+.right_card h2{
+    color: rgb(2, 83, 140);
+    transition: 0.5s ease-in-out;
+}
+.right_card h2:hover{
+    color: rgb(7, 120, 200);
+    text-decoration: underline;
+}
 .div_search{
     display: none;
     position: relative;
     left: 25px;
-    bottom: 550px;
+    bottom: 650px;
     width: 1100px;
     height: 350px;
     border-radius: 10px;
@@ -333,7 +371,53 @@ li{
 .div_search.activeSearch{
     display: flex;
 }
+/* Статистика */
+.stats {
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 60px 80px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    overflow: hidden;
+    width: 900px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
+.stat_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.stat_item {
+    border-right: 2px solid rgba(6, 115, 193, 0.707);
+    padding-right: 50px;
+}
+
+.stat_item:last-child {
+    border-right: none;
+}
+.stat_number {
+    font-family: 'Bebas Neue', sans-serif;
+    color: rgb(2, 83, 140);
+    line-height: 1;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.stat_accent {
+    color: #4da6ff;
+}
+.stat_label {
+    font-size: 12px;
+    color: rgba(6, 120, 202, 0.792);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    font-weight: 600;
+}
 /* Преимущества */
 .image_container{
     margin: 0 auto;
@@ -369,7 +453,6 @@ li{
 .right_txt p{
     display: flex;
     justify-content: left;
-    text-indent: 10px;
 }
 .right_txt h3{
     margin: 0 auto;
@@ -432,6 +515,7 @@ li{
     padding: 0 20px;
     margin: 0 auto;
     color: white; 
+    border-radius: 5px;
     justify-content: space-between;
     background-color: rgb(2, 83, 140);
 }
@@ -444,8 +528,8 @@ li{
     width: 35px;
     height: 35px;
     cursor: pointer;
-    margin-top: 63px;
+    margin-top: 58px;
 }
 #p_footer{
-    margin-top: 80px;
+    margin-top: 76px;
 }

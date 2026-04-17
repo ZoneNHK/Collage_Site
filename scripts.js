@@ -61,6 +61,18 @@ document.querySelector('#abits').addEventListener('mouseout', ()=>{
 })
 
 
+let list = document.querySelectorAll('.choice_menu');
+for (let lst of list){
+    lst.addEventListener('click', e=>{
+        if (e.target.dataset.target){
+            document.querySelectorAll('.links_menu').forEach(block => {block.classList.remove('active_link')});
+            document.querySelector('#' + e.target.dataset.target).classList.add('active_link');
+        }
+    }
+)}
+
+let card_list = document.querySelectorAll('.card_info');
+
 async function getNews() {
     const response = await fetch("http://127.0.0.1:8000/news");
     const posts = await response.json();
