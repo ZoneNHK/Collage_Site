@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from database import engine, Base
 from model import Posts
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from sqlalchemy import select, delete, update
 from pydantic import BaseModel, Field, field_validator, model_validator
 from fastapi.middleware.cors import CORSMiddleware as corsMid

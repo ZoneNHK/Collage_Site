@@ -9,6 +9,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
+    <div class="page_wrapper">
     <!-- Шапка -->
     <header class="head">
 
@@ -57,7 +58,7 @@
         </div>
 
         <section class="wind_menu">
-            <!-- Выбор-->
+                <!-- Выбор-->
             <div class="choice_menu">
                 <ul class="chice_lst">
                     <li><button id="but1" class="menu_but" data-target="studs_link">Студенту</button></li>
@@ -69,7 +70,10 @@
             </div>
             <!-- Вывод информации -->
             <div class="output_menu">
-
+                <div class="menu_welcome" id="menu_welcome">
+                    <h3>Навигация по сайту</h3>
+                    <p>Выберите раздел слева для получения информации</p>
+                </div>
                 <div class="links_menu" id="studs_link">
                     <div class="child_link">
                         <a href="https://3kl.dontu.ru/">Дистанционное обучение</a>
@@ -151,16 +155,17 @@
             
         </div>
     </section>
-
     <!-- Основаная информация -->
     <main class="main">
         <h2>Новости</h2>
-        <div class="div_search">
+        <hr id="divid2">
+        <div id="posts_container">
         </div>
         <div class="news">
 
         </div>
     </main>
+    <hr class="divider">
     <div class="stats">
         <div class="stat_item">
             <span class="stat_number">500+</span>
@@ -179,6 +184,7 @@
             <span class="stat_label">Год основания</span>
         </div>
     </div>
+    <!-- <hr class="divider"> -->
     <section class="links_div">
         <div class="bottom">
             <!-- Строительство -->
@@ -276,5 +282,6 @@
             <a target="_blank" href="https://vk.com/away.php?to=https%3A%2F%2Fmax.ru%2Fid9406003464_biz&utf=1"><img src="image/max.png" alt="Не найдено"></a>
         </div>
     </footer>
+    </div>
 </body>
 </html>
