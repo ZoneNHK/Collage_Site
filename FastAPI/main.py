@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Depends, HTTPException  
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from database import engine, Base
-from model import Posts
+from model import Posts, Teacher, Specialty
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse, FileResponse
-from sqlalchemy import select, delete, update
+from sqlalchemy import select, delete, or_, and_
 from pydantic import BaseModel, Field, field_validator, model_validator
 from fastapi.middleware.cors import CORSMiddleware as corsMid
 
@@ -28,6 +28,15 @@ async def get_db():
     async with async_session() as session:
         yield session
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="C:/Project/FastAPI/static"), name="static")
+
+@app.get("/")
+async def root():
+    return FileResponse("C:/Project/FastAPI/static/index.html")
+
+@app.get("/search-page")
+async def search_page():
+    return FileResponse("C:/Project/FastAPI/static/search.html")
 class Model_Post(BaseModel):
     id: int
     foto: str
@@ -53,3 +62,26 @@ async def get_pt(db: AsyncSession = Depends(get_db)):
     res = await db.execute(select(Posts))
     posts = res.scalars().all()
     return posts
+
+
+@app.get("/search/teachers")
+async def search_teach(name: str = None, surname: str = None, db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Teacher).where(or_(Teacher.surname.ilike(surname), Teacher.name.ilike(name))))
+    teacher = query.scalars().all()
+    proverka(teacher)
+    return teacher
+    
+@app.get("/search/specialty")
+async def search_spec(title: str = None, desc: str = None, db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Specialty).where(or_(Specialty.title.ilike(title), Specialty.description.ilike(desc))))
+    specialty = query.scalars().all()
+    proverka(specialty)
+    return specialty
+
+@app.get("/search/posts")
+async def search_post(head: str = None, cont: str = None, db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Posts).where(or_(Posts.headerP.ilike(head), Posts.contentP.ilike(cont))))
+    post = query.scalars().all()
+    proverka(post)
+    return post
+

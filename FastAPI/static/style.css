@@ -3,8 +3,10 @@
     src: url(fonts/GolosText-Regular.ttf);
 }
 body{
-    background-color: #f0f2f5; 
+    background-color: #e2e3e4;
 }
+    /* background-color: #f0f2f5;  */
+
 * {
     margin: 0;
     padding: 0;
@@ -150,7 +152,7 @@ li{
 .menu_a:hover{
     background-color: rgb(5, 105, 177);
 }
-.inp_dv{
+.inp_dv, .inp_dv2{
     display: flex;
     position: relative;
     justify-content: center;
@@ -169,8 +171,14 @@ li{
     height: 20px;
     margin-top: 8px;
     position: absolute;
-    cursor: pointer;
     left: 820px;
+}
+#icon_search2{
+    width: 23px;
+    height: 23px;
+    margin-top: 15px;
+    position: absolute;
+    left: 960px;
 }
 .input_head{
     width: 500px;
@@ -180,10 +188,18 @@ li{
     border: 1.5px solid rgb(2, 83, 140);
     color: rgb(3, 99, 167);
 }
-.input_head::placeholder{
+.input_head2{
+    width: 700px;
+    height: 50px;
+    border-radius: 5px;
+    padding-left: 5px;
+    border: 1.5px solid rgb(2, 83, 140);
+    color: rgb(3, 99, 167);
+}
+.input_head::placeholder, .input_head2::placeholder{
     color: rgb(3, 55, 93);
 }
-.input_head:focus{
+.input_head:focus, .input_head2:focus{
     outline: none;
     box-shadow: 0px 0px 5px 2px rgb(196, 196, 246);
 }
@@ -557,7 +573,6 @@ li{
     padding: 0 20px;
     margin: 0 auto;
     color: white; 
-    border-radius: 5px;
     justify-content: space-between;
     background-color: rgb(2, 83, 140);
 }
