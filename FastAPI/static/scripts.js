@@ -85,7 +85,7 @@ async function getPosts() {
         <div id="post">
             <h3 class="h2_js">${post.headerP}</h2>
             <div id="card_info">
-                <img class="news_img" src="FastAPI/${post.foto}" alt="фото">
+                <img class="news_img" src="${post.foto}" alt="фото">
                 <p class="news_text">${post.contentP}</p>
             </div>
         </div>
@@ -97,6 +97,6 @@ getPosts();
 
 document.querySelector('.input_head').addEventListener('keydown', e=>{
     if (e.key == "Enter"){
-        location.href = `search.html?value=${document.querySelector('.input_head').value}`
+        location.href = `/static/search.html?value=${document.querySelector('.input_head').value}`
     }
 })

@@ -336,11 +336,15 @@ li{
     padding: 0 20px;
     margin: 0 auto;
     border-radius: 10px;
-    /* border-left: 1px solid rgb(2, 83, 140);
-    border-right: 1px solid rgb(2, 83, 140); */
+}
+#res_search_div{
+    width: 1250px;
+    height: 900px;
+    margin: 20px;
+    padding: 25px;
 }
 #posts_container{
-    height: 1000px;
+    height: 990px;
     width: 1280px;
     overflow-y: auto;
 }

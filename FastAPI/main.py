@@ -66,22 +66,37 @@ async def get_pt(db: AsyncSession = Depends(get_db)):
 
 @app.get("/search/teachers")
 async def search_teach(name: str = None, surname: str = None, db: AsyncSession = Depends(get_db)):
-    query = await db.execute(select(Teacher).where(or_(Teacher.surname.ilike(surname), Teacher.name.ilike(name))))
+    condit = []
+    if name:
+        condit.append(Teacher.name.ilike(f"%{name}%"))
+    if surname:
+        condit.append(Teacher.surname.ilike(f"%{surname}%"))
+    query = await db.execute(select(Teacher).where(or_(*condit)))
     teacher = query.scalars().all()
-    proverka(teacher)
+    await proverka(teacher)
     return teacher
     
 @app.get("/search/specialty")
 async def search_spec(title: str = None, desc: str = None, db: AsyncSession = Depends(get_db)):
-    query = await db.execute(select(Specialty).where(or_(Specialty.title.ilike(title), Specialty.description.ilike(desc))))
+    condit = []
+    if title:
+        condit.append(Specialty.title.ilike(f"%{title}%"))
+    if desc:
+        condit.append(Specialty.description.ilike(f"%{desc}%"))
+    query = await db.execute(select(Specialty).where(or_(*condit)))
     specialty = query.scalars().all()
-    proverka(specialty)
+    await proverka(specialty)
     return specialty
 
 @app.get("/search/posts")
 async def search_post(head: str = None, cont: str = None, db: AsyncSession = Depends(get_db)):
-    query = await db.execute(select(Posts).where(or_(Posts.headerP.ilike(head), Posts.contentP.ilike(cont))))
+    condit = []
+    if head:
+        condit.append(Posts.headerP.ilike(f"%{head}%"))
+    if cont:
+        condit.append(Posts.contentP.ilike(f"%{cont}%"))
+    query = await db.execute(select(Posts).where(or_(*condit)))
     post = query.scalars().all()
-    proverka(post)
+    await proverka(post)
     return post
 

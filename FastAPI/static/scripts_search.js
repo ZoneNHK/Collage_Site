@@ -32,10 +32,23 @@ async function search_info(param) {
     ])
     res_search.innerHTML = html
 }
-
+let input = document.querySelector('.input_head2')
 const params = new URLSearchParams(window.location.search)
 const value = params.get('value')
 if (value){
-    let input = document.querySelector('.input_head2').value = value
+    input.value = value
     search_info(input)
+    history.replaceState({}, '', '/search-page')
 }
+
+input.addEventListener('keydown', e=>{
+    if (e.key == "Enter"){
+        if (input.value !== ''){
+            search_info(input)
+        }
+    }
+})
+
+document.querySelector('#back_div').addEventListener('click', e=>{
+    location.href = '/static/index.html'
+})
