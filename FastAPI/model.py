@@ -25,3 +25,9 @@ class Teacher(Base):
     name: Mapped[str]
     id_specialty: Mapped[int] = mapped_column(ForeignKey('Specialty.id_specialty'))
     specialty: Mapped['Specialty'] = relationship(back_populates='Teacher')
+
+class Admin(Base):
+    __tablename__= 'Admin'
+    id_ad: Mapped[int] = mapped_column(primary_key=True)
+    login: Mapped[str] = mapped_column(String(30), unique=True)
+    password: Mapped[str] = mapped_column(String(80))

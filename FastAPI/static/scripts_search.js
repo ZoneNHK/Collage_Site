@@ -1,5 +1,7 @@
 let inp_search = document.querySelector('.input_head2')
 let res_search = document.querySelector('#res_search_div')
+const params = new URLSearchParams(window.location.search)
+const value = params.get('value')
 async function search_info(param) {
     let html = ''
     const [teacher, specialty, post] = await Promise.all([
@@ -32,23 +34,53 @@ async function search_info(param) {
     ])
     res_search.innerHTML = html
 }
-let input = document.querySelector('.input_head2')
-const params = new URLSearchParams(window.location.search)
-const value = params.get('value')
+
 if (value){
-    input.value = value
-    search_info(input)
+    inp_search.value = value
+    search_info(inp_search)
     history.replaceState({}, '', '/search-page')
 }
 
-input.addEventListener('keydown', e=>{
-    if (e.key == "Enter"){
-        if (input.value !== ''){
-            search_info(input)
-        }
+const keywords = {
+    'преподаватели': {
+        fetch: () => fetch('/search/teachers'),
+        template: item => `
+            <div id="posts">
+                <h3 class="h2_js">${item.surname} ${item.name}</h3>
+            </div><br><br>`   
+    },
+    'специальности': {
+        fetch: () => fetch('/search/specialty'),
+        template: item => `
+            <div id="posts">
+                <h3 class="h2_js">${item.title}</h3>
+                <p class="news_text">${item.description}</p>
+            </div><br><br>`
+    },
+    'новости': {
+        fetch: () => fetch('/search/posts'),
+        template: item => `
+            <div id="posts">
+                <h3 class="h2_js">${item.headerP}</h3>
+                <p class="news_text">${item.contentP}</p> 
+            </div><br><br>`
     }
-})
+}
+keywords['учителя'] = keywords['преподаватели']
+keywords['педагоги'] = keywords['преподаватели']
 
+inp_search.addEventListener('keydown', async e=>{
+    if (e.key == "Enter"){
+        const inp = inp_search.value.toLowerCase().trim()
+        if (keywords[inp]) {
+            const resp = await keywords[inp].fetch()
+            const data = await resp.json()
+            res_search.innerHTML = data.map(keywords[inp].template).join('')
+        } else {
+            search_info(inp)
+        }   
+        }
+})
 document.querySelector('#back_div').addEventListener('click', e=>{
     location.href = '/static/index.html'
 })

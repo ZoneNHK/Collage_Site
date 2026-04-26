@@ -77,26 +77,66 @@ for (let lst of list){
     }
 )}
 
-async function getPosts() {
-    const resp = await fetch("http://127.0.0.1:8000/posts");
-    const posts = await resp.json();
-    const container = document.querySelector('#posts_container')
-    container.innerHTML = posts.map(post => `
-        <div id="post">
-            <h3 class="h2_js">${post.headerP}</h2>
-            <div id="card_info">
-                <img class="news_img" src="${post.foto}" alt="фото">
-                <p class="news_text">${post.contentP}</p>
-            </div>
-        </div>
-    `).join('')
-    console.log('container:', container)
-    console.log('posts:', posts)
-}
-getPosts();
 
 document.querySelector('.input_head').addEventListener('keydown', e=>{
     if (e.key == "Enter"){
         location.href = `/static/search.html?value=${document.querySelector('.input_head').value}`
+    }
+})
+
+let page = 1
+const limit = 4
+let total = 1
+async function pages(param){
+    const resp = await fetch(`http://127.0.0.1:8000/posts?page=${param}&limit=${limit}`)
+    const posts = await resp.json()
+    total = Math.ceil(posts.total / limit)
+    const container = document.querySelector('#posts_container')
+    console.log(posts)
+    container.innerHTML = posts.posts.map(post => `
+        <div id="post">
+            <h3 class="h2_js">${post.headerP}</h2>
+            <div id="card_info">
+                <img class="news_img" src="/static/${post.foto}" alt="фото">
+                <p class="news_text">${post.contentP}</p>
+            </div>
+        </div>
+    `).join('')  
+}
+addEventListener('load', e=>{
+    pages(1)
+})
+document.querySelector('#left_but').addEventListener('click', e=>{
+    if (page-1 != 0) {
+        page--
+        pages(page)
+    }
+    else {
+        pages(1)
+    }
+})
+
+document.querySelector('#rigth_but').addEventListener('click', e=>{
+    if (page < total) {
+        page++
+        pages(page)
+    }
+        else {
+            page++
+            pages(page)
+        }
+})
+let inp = document.querySelector('#enter_inp')
+inp.addEventListener('keydown', e=>{
+    if (e.key === 'Enter'){
+        let val = parseInt(inp.value)
+        if (val && val > 0 && val <= total){
+            page = val 
+            pages(page)
+        }
+        else {
+        inp.value = 1
+        pages(inp.value)
+        }
     }
 })
