@@ -34,9 +34,11 @@ app.mount("/static", StaticFiles(directory="C:/Project/FastAPI/static"), name="s
 @app.get("/")
 async def root():
     return FileResponse("C:/Project/FastAPI/static/index.html")
+
 @app.get('/admin_site')
-async def adm()
-    return FileResponse("C:/Project/FastAPI/static/admin.html")
+async def adm():
+    return FileResponse("C:/Project/FastAPI/static/admins/auten.html")
+
 @app.get("/search-page")
 async def search_page():
     return FileResponse("C:/Project/FastAPI/static/search.html")
