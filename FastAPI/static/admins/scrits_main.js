@@ -24,6 +24,7 @@ async function loadPosts() {
                 <div id="post_${p.id_post}" data-foto="${p.foto}">             
                     <button onclick="editPost(${p.id_post})" class="db_but">Редактировать</button>
                     <button onclick="deletePost(${p.id_post})" class="db_but">Удалить</button>
+                    <button id="save_${p.id_post}" class="db_but" style="display:none">Сохранить</button>
                 </div>
             </div>
             <div id="card_info">
@@ -85,13 +86,19 @@ async function editPost(id) {
     const hd = document.querySelector(`#head_${id}`)
     const ct = document.querySelector(`#con_${id}`)
     const foto = document.querySelector(`#post_${id}`).dataset.foto
+    const saveBtn = document.querySelector(`#save_${id}`)
+    
     hd.setAttribute('contenteditable', 'true')
     ct.setAttribute('contenteditable', 'true')
     hd.focus()
-    ct.addEventListener('blur', async ()=>{
+    saveBtn.style.display = 'inline'
+    
+    saveBtn.addEventListener('click', async () => {
         hd.removeAttribute('contenteditable')
         ct.removeAttribute('contenteditable')
-        await fetch(`http://127.0.0.1:8000/admin/posts?id=${id}`, {
+        saveBtn.style.display = 'none'
+        
+        const res = await fetch(`http://127.0.0.1:8000/admin/posts?id=${id}`, {
             method: 'PUT',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
@@ -101,6 +108,7 @@ async function editPost(id) {
                 contP: ct.innerHTML
             })
         })
+        console.log(res.status)
         loadPosts()
     }, {once: true})
 }
