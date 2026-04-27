@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(2, 83, 140);
+}
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 550px;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+#title{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 150px;
+    margin-top: 40px;
+}
+#title h3{
+    margin: 0;
+}
+#title p{
+    color: gray;
+}
+#img_ico{
+    width: 80px;
+    height: 80px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+#enter{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    height: 320px;
+    margin: 0;
+}
+#enter label{
+    color: gray;
+}
+.inputs{
+    width: 350px;
+    height: 50px;
+    outline: none;
+    border-radius: 6px;
+    font-size: 15px;
+    border: 1px solid rgb(2, 83, 140);
+}
+#log_but{
+    width: 300px;
+    height: 70px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    margin-bottom: 50px;
+    transition: 0.5s ease-in-out;
+    background-color: rgb(2, 83, 140);
+    cursor: pointer;
+}
+#log_but:hover{
+    background-color: rgb(5, 110, 186);
+}
+#message{
+    display: none;
+    position: absolute;
+    border-radius: 6px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+}
+#message h2{
+    color: red;
+}
+/* #message.active{
+    display: block;
+} */

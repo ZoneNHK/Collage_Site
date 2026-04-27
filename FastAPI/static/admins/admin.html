@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
-    <link rel="icon" href="/static/image/title_icon.png" type="image/x-icon">
+    <title>Административная панель</title>
+    <link rel="icon" href="/admins/img/panel.png" type="image/x-icon">
+    <link rel="stylesheet" href="/admins/style_main.css">
+    <script src="/admins/scrits_main.js" defer></script>
 </head>
 <body>
-    
+    <section id="container">
+        <header id="head">
+            <nav id="navigation">
+                <h3>Административная панель</h3>
+            </nav>
+        </header>
+        <main id="main">
+            <div id="left">
+                <p>Основная информация</p>
+                <button data-target="post_link">Новости</button>
+                <button data-target="teach_link">Преподаватели</button>
+                <button data-target="special_link">Специальности</button>
+            </div>
+            <div id="right">
+                <div id="teach_link" class="links"><p>Преподаватели</p></div>
+                <div id="post_link" class="links"><p>Посты</p></div>
+                <div id="special_link" class="links"><p>Специальности</p></div>
+            </div>
+        </main>
+    </section>
 </body>
 </html>

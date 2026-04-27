@@ -30,14 +30,19 @@ async def get_db():
         yield session
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/static", StaticFiles(directory="C:/Project/FastAPI/static"), name="static")
+app.mount("/admins", StaticFiles(directory="C:/Project/FastAPI/static/admins"), name="admins")
 
 @app.get("/")
 async def root():
     return FileResponse("C:/Project/FastAPI/static/index.html")
 
-@app.get('/admin_site')
+@app.get('/auten_site')
 async def adm():
     return FileResponse("C:/Project/FastAPI/static/admins/auten.html")
+
+@app.get('/admin_site')
+async def adm():
+    return FileResponse("C:/Project/FastAPI/static/admins/admin.html")
 
 @app.get("/search-page")
 async def search_page():
@@ -133,11 +138,11 @@ async def post_admin(model: SchemaLogin, db: AsyncSession = Depends(get_db)):
     return {"id": user.id_ad, "login": user.login, "password": user.password}
 
 @app.post('/login')
-async def login(login: str, password: str, db: AsyncSession = Depends(get_db)):
-    query = await db.execute(select(Admin).where(Admin.login == login))
+async def login(model: SchemaLogin, db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Admin).where(Admin.login == model.login))
     admin = query.scalar_one_or_none()
     await proverka(admin)
-    passw(admin, password)
+    passw(admin, model.password)
     token = create_token({"sub": admin.login})
     response = JSONResponse(content={"message":"Успешный вход"})
     response.set_cookie(
@@ -149,12 +154,12 @@ async def login(login: str, password: str, db: AsyncSession = Depends(get_db)):
     return response
 
 @app.get("/admin/posts")
-async def post_admin_posts(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+async def get_admin_posts(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
     posts = await db.execute(select(Posts))
     return posts.scalars().all()
 
 @app.post("/admin/posts")
-async def get_admin_posts(model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+async def post_admin_posts(model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
     post = Posts(foto=model.foto, headerP=model.headP, contentP=model.contP)
     db.add(post)
     await db.commit()
@@ -169,3 +174,8 @@ async def del_admin_posts(id: int, login: str = Depends(verify_token), db: Async
     await db.delete(post)
     await db.commit()
     return {"message": "Запись удалена"}
+
+@app.get('admin/teacher')
+async def get_admin_teach(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Teacher))
+    return query.scalars().all()
