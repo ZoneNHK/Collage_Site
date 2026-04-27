@@ -32,14 +32,14 @@ body{
     flex-direction: column;
     gap: 5px;
     width: 85%;
-    height: 750px;
+    height: 600px;
     border-radius: 10px;
     background-color: white;
 }
 
 #left{
     width: 260px;
-    height: 500px;
+    height: 850px;
     border-right: 1px solid rgba(158, 156, 156, 0.822);
 }
 #left p{
@@ -71,8 +71,7 @@ body{
     height: 500px;
     border-radius: 10px;
     margin-right: 10px;
-    height: 700px; 
-    border: 1px solid red;
+    height: 850px; 
 }
 #right h2 {
     padding: 10px 15px;
@@ -119,7 +118,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
     flex: 1;
-    height: 600px;
+    height: 850px;
 }
 
 #teach_link, #post_link, #special_link{
@@ -178,4 +177,9 @@ body{
     font-size: 22px;
     color: rgb(2, 83, 140);;
     margin-bottom: 10px;
+}
+.titleH{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

@@ -20,14 +20,14 @@ async function loadPosts() {
     document.querySelector('#post_list').innerHTML = json.map(p => `
         <div id="post">
             <div class="du_info">
-                <h3 class="h2_js">${p.headerP}</h3>  
-                <div>              
+                <h3 id="head_${p.id_post}" class="h2_js">${p.headerP}</h3>  
+                <div id="post_${p.id_post}" data-foto="${p.foto}">             
                     <button onclick="editPost(${p.id_post})" class="db_but">Редактировать</button>
                     <button onclick="deletePost(${p.id_post})" class="db_but">Удалить</button>
                 </div>
             </div>
             <div id="card_info">
-                <p class="news_text">${p.contentP}</p>
+                <p id="con_${p.id_post}" class="news_text">${p.contentP}</p>
             </div>
         </div>
     `).join('')  
@@ -42,7 +42,10 @@ async function loadTeachers() {
     document.querySelector('#teach_list').innerHTML = json.map(t => `
         <div id="posts">
             <div class="du_info">
-                <h3 class="h2_js">${t.surname} ${t.name}</h3>
+                <div id="teacher_${t.id_teacher}" data-specialty="${t.id_specialty}">
+                    <h3 id="surname_${t.id_teacher}" class="h2_js">${t.surname}</h3>
+                    <h3 id="name_${t.id_teacher}">${t.name}</h3>
+                </div>
                 <div>
                     <button onclick="editTeacher(${t.id_teacher})" class="db_but">Редактировать</button>
                     <button onclick="deleteTeacher(${t.id_teacher})" class="db_but">Удалить</button>
@@ -62,13 +65,13 @@ async function loadSpecialties() {
     document.querySelector('#special_list').innerHTML = json.map(s => `
         <div id="posts"> 
             <div class="du_info">
-                <h3 class="h2_js">${s.title}</h3>
+                <h3 id="title_${s.id_specialty}" class="h2_js">${s.title}</h3>
                 <div>
                     <button onclick="editSpecialty(${s.id_specialty})" class="db_but">Редактировать</button>
                     <button onclick="deleteSpecialty(${s.id_specialty})" class="db_but">Удалить</button>
                 </div>
             </div>
-            <p class="news_text">${s.description}</p>
+            <p id=desc_${s.id_specialty} class="news_text">${s.description}</p>
         </div>      
         <hr id="hr_div">
     `).join('')
@@ -78,6 +81,75 @@ document.querySelector('#but_post').addEventListener('click', () => loadPosts())
 document.querySelector('#but_teach').addEventListener('click', () => loadTeachers())
 document.querySelector('#but_spec').addEventListener('click', () => loadSpecialties())
 
+async function editPost(id) {
+    const hd = document.querySelector(`#head_${id}`)
+    const ct = document.querySelector(`#con_${id}`)
+    const foto = document.querySelector(`#post_${id}`).dataset.foto
+    hd.setAttribute('contenteditable', 'true')
+    ct.setAttribute('contenteditable', 'true')
+    hd.focus()
+    ct.addEventListener('blur', async ()=>{
+        hd.removeAttribute('contenteditable')
+        ct.removeAttribute('contenteditable')
+        await fetch(`http://127.0.0.1:8000/admin/posts?id=${id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                foto: foto,
+                hedP: hd.innerHTML,
+                contP: ct.innerHTML
+            })
+        })
+        loadPosts()
+    }, {once: true})
+}
+
+async function editTeacher(id) {
+    const sn = document.querySelector(`#surname_${id}`)
+    const nm = document.querySelector(`#name_${id}`)
+    const sp_id = document.querySelector(`#teacher_${id}`).dataset.specialty
+    sn.setAttribute('contenteditable', 'true')
+    nm.setAttribute('contenteditable', 'true')
+    sn.focus()
+    nm.addEventListener('blur', async ()=>{
+        sn.removeAttribute('contenteditable')
+        nm.removeAttribute('contenteditable')
+        await fetch(`http://127.0.0.1:8000/admin/teacher?id=${id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                surname: sn.innerHTML,
+                name: nm.innerHTML,
+                id_specialty: parseInt(sp_id)
+            })
+        })
+        loadTeachers()
+    }, {once: true})
+}
+
+async function editSpecialty(id) {
+    const title = document.querySelector(`#title_${id}`)
+    const desc = document.querySelector(`#desc_${id}`)
+    title.setAttribute('contenteditable', 'true')
+    desc.setAttribute('contenteditable', 'true')
+    title.focus()
+    desc.addEventListener('blur', async ()=>{
+        title.removeAttribute('contenteditable')
+        desc.removeAttribute('contenteditable')
+        await fetch(`http://127.0.0.1:8000/admin/specialty?id=${id}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                title: title.innerHTML,
+                description: desc.innerHTML
+            })
+        })
+        loadSpecialties()
+    }, {once: true})
+}
 
 async function deletePost(id) {
     const res = await fetch(`http://127.0.0.1:8000/admin/posts?id=${id}`, {
@@ -111,20 +183,23 @@ async function deleteSpecialty(id) {
 }
 
 document.querySelector('#addPost').addEventListener('click', async e=> {
-    const post = {
+    const pt = {
         foto: document.querySelector('#post_foto').value,
-        headerP: document.querySelector('#post_head').value,
-        contentP: document.querySelector('#post_cont').value
+        hedP: document.querySelector('#post_head').value,
+        contP: document.querySelector('#post_cont').value
     }
     const res = await fetch('http://127.0.0.1:8000/admin/posts', {
         method: 'POST',
         credentials: 'include',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: JSON.stringify(pt)
     })
     if (res.ok){
         console.log('message:', 'Запись успешно добавлена')
         loadPosts()
+        document.querySelector('#post_foto').value = ""
+        document.querySelector('#post_head').value = ""
+        document.querySelector('#post_cont').value = ""
     }
 })
 document.querySelector('#add_Teacher').addEventListener('click', async e=>{
@@ -142,6 +217,9 @@ document.querySelector('#add_Teacher').addEventListener('click', async e=>{
     if (res.ok) {
         console.log('message:', 'Запись успешно добавлена')
         loadTeachers()
+        document.querySelector('#teach_surn').value = ""
+        document.querySelector('#teach_name').value = ""
+        document.querySelector('#teach_spec').value = ""
     }
 })
 document.querySelector('#addSpecialty').addEventListener('click', async e=>{
@@ -158,5 +236,7 @@ document.querySelector('#addSpecialty').addEventListener('click', async e=>{
     if (res.ok) {
         console.log('message:', 'Запись успешно добавлена')
         loadSpecialties()
+        document.querySelector('#spec_title').value = ""
+        document.querySelector('#spec_desc').value = ""
     }
 })
