@@ -52,7 +52,16 @@ class Model_Post(BaseModel):
     foto: str
     hedP: str
     contP: str
+class Model_Teach(BaseModel):
+    id_teacher: int
+    surname: str
+    name: str
+    id_specialty: int
 
+class Model_Special(BaseModel):
+    id_specialty: int
+    title: str
+    description: str
 
 async def proverka(model):
     if model is None:
@@ -153,10 +162,15 @@ async def login(model: SchemaLogin, db: AsyncSession = Depends(get_db)):
     )
     return response
 
+async def get_data(name, db):
+    query = await db.execute(select(name))
+    return query.scalars().all()
+
+
+# CRUD для Постов
 @app.get("/admin/posts")
 async def get_admin_posts(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
-    posts = await db.execute(select(Posts))
-    return posts.scalars().all()
+    return await get_data(Posts, db)
 
 @app.post("/admin/posts")
 async def post_admin_posts(model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
@@ -165,6 +179,17 @@ async def post_admin_posts(model: Model_Post, login: str = Depends(verify_token)
     await db.commit()
     await db.refresh(post)
     return {"id": post.id_posts, "foto": post.foto, "headerP": post.headerP, "contentP": post.contentP}
+
+@app.put("/admin/posts")
+async def put_admin_post(id: int, model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Posts).where(Posts.id_post == id))
+    post = query.scalars().all()
+    proverka(post)
+    post.foto = model.foto
+    post.headerP = model.headP
+    post.contentP = model.contP
+    await db.commit()
+    return {"message": 'Запись успешно изменена'}
 
 @app.delete("/admin/posts")
 async def del_admin_posts(id: int, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
@@ -175,7 +200,67 @@ async def del_admin_posts(id: int, login: str = Depends(verify_token), db: Async
     await db.commit()
     return {"message": "Запись удалена"}
 
-@app.get('admin/teacher')
+# CRUD для Преподователей
+@app.get('/admin/teacher')
 async def get_admin_teach(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
-    query = await db.execute(select(Teacher))
-    return query.scalars().all()
+    return await get_data(Teacher, db)
+
+@app.post('/admin/teacher')
+async def post_admin_teach(model: Model_Teach, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = Teacher(surname=model.surname, name=model.name, id_specialty=model.id_specialty)
+    db.add(query)
+    await db.commit()
+    await db.refresh(query)
+    return {"id": query.id_teacher, "surname": query.surname, "name": query.name, "id_specialty": query.id_specialty}
+
+@app.delete('/admin/teacher')
+async def del_admin_teach(id: int, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Teacher).where(Teacher.id_teacher == id))
+    teacher = query.scalar_one_or_none()
+    proverka(teacher)
+    await db.delete(teacher)
+    await db.commit()
+    return {'message': 'Запись успешно удалена'}
+
+@app.put('/admin/teacher')
+async def put_admin_teach(id: int, model: Model_Teach, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Teacher).where(Teacher.id_teacher == id))
+    teach = query.scalars().all()
+    proverka(teach)
+    teach.surname = model.surname
+    teach.name = model.name
+    teach.id_specialty = model.id_specialty
+    await db.commit()
+    return {'message': 'Запись успешно изменена'}
+
+# CRUD для специальностей
+@app.get('/admin/specialty')
+async def get_admin_spec(login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    return await get_data(Specialty, db)
+
+@app.post('/admin/specialty')
+async def post_admin_spec(model: Model_Special, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = Specialty(title=model.title, description=model.description)
+    db.add(query)
+    await db.commit()
+    await db.refresh(query)
+    return {"id": query.id_specialty, "title": query.title, "description": query.description}
+
+@app.delete('/admin/specialty')
+async def del_admin_spec(id: int, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Specialty).where(Specialty.id_specialty == id))
+    teacher = query.scalar_one_or_none()
+    proverka(teacher)
+    await db.delete(teacher)
+    await db.commit()
+    return {'message': 'Запись успешно удалена'}
+
+@app.put('/admin/specialty')
+async def put_admin_spec(id: int, model: Model_Special, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+    query = await db.execute(select(Specialty).where(Specialty.id_specialty == id))
+    special = query.scalars().all()
+    proverka(special)
+    special.title = model.title
+    special.description = model.description
+    await db.commit()
+    return {'message': 'Запись успешно изменена'}    
