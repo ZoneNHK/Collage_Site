@@ -48,18 +48,14 @@ async def adm():
 async def search_page():
     return FileResponse("C:/Project/FastAPI/static/search.html")
 class Model_Post(BaseModel):
-    id: int
     foto: str
     hedP: str
     contP: str
 class Model_Teach(BaseModel):
-    id_teacher: int
     surname: str
     name: str
     id_specialty: int
-
 class Model_Special(BaseModel):
-    id_specialty: int
     title: str
     description: str
 

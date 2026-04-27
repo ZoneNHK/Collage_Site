@@ -24,16 +24,19 @@ body{
     padding: 15px;
     color: white;
 }
+
 #main{
     margin: 0 auto;
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
     width: 85%;
+    height: 750px;
     border-radius: 10px;
     background-color: white;
 }
+
 #left{
     width: 260px;
     height: 500px;
@@ -68,14 +71,55 @@ body{
     height: 500px;
     border-radius: 10px;
     margin-right: 10px;
+    height: 700px; 
     border: 1px solid red;
+}
+#right h2 {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(158, 156, 156, 0.5);
+    margin: 0;
+}
+#post_add, #teach_add, #special_add {
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(158, 156, 156, 0.5);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#post_add input, #teach_add input, #special_add input,
+#post_add textarea, #special_add textarea {
+    border: 1px solid rgba(158, 156, 156, 0.8);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+    outline: none;
+}
+.addBut{
+    width: 90px;
+    height: 35px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(2, 83, 140);
+}
+#sect{
+    display: flex;
+    flex-direction: row;
+    gap: 5px; 
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
 }
 .links{
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    overflow-x: hidden;
     flex: 1;
-    height: 400px;
+    height: 600px;
 }
 
 #teach_link, #post_link, #special_link{
@@ -95,7 +139,11 @@ body{
 .du_info{
     display: flex;
     flex-direction: row;
+    padding: 10px;
     justify-content: space-between;
+}
+.du_info h3{
+    margin: 0;
 }
 #hr_div{
     width: 100%;

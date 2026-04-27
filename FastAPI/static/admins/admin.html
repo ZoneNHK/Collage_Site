@@ -16,17 +16,52 @@
             </nav>
         </header>
         <main id="main">
-            <div id="left">
-                <p>Основная информация</p>
-                <button data-target="post_link" id="but_post">Новости</button>
-                <button data-target="teach_link" id="but_teach">Преподаватели</button>
-                <button data-target="special_link" id="but_spec">Специальности</button>
+            <div id="sect">
+                <div id="left">
+                    <p>Основная информация</p>
+                    <button data-target="post_link" id="but_post">Новости</button>
+                    <button data-target="teach_link" id="but_teach">Преподаватели</button>
+                    <button data-target="special_link" id="but_spec">Специальности</button>
+                </div>
+
+                <div id="right">
+
+                    <div id="post_link" class="links">   
+                        <div id="post_add">
+                            <h3>Посты</h3>
+                            <input type="text" id="post_foto" placeholder="Путь к фото">
+                            <input type="text" id="post_head" placeholder="Заголовок">
+                            <textarea id="post_cont" placeholder="Текст"></textarea>
+                            <button id="addPost" class="addBut">Добавить</button>
+                        </div>
+                        <div id="post_list"></div>
+                    </div>
+
+                    <div id="teach_link" class="links">
+                        
+                        <div id="teach_add">
+                            <h3>Преподаватели</h3>
+                            <input type="text" id="teach_surn" placeholder="Введите фамилию">
+                            <input type="text" id="teach_name" placeholder="Введите имя">
+                            <input type="number" id="teach_spec" placeholder="Введите номер специальности">
+                            <button id="add_Teacher" class="addBut">Добавить</button>
+                        </div>
+                        <div id="teach_list"></div>
+                    </div>
+
+                    <div id="special_link" class="links">
+                        <div id="special_add">
+                            <h3>Спеицальности</h3>
+                            <input type="text" id="spec_title" placeholder="Введите название">
+                            <textarea id="spec_desc" placeholder="Описание"></textarea>
+                            <button id="addSpecialty" class="addBut">Добавить</button>
+                        </div>
+                        <div id="special_list"></div>
+                    </div>
+
+                </div>
             </div>
-            <div id="right">
-                <div id="teach_link" class="links"></div>
-                <div id="post_link" class="links"></div>
-                <div id="special_link" class="links"></div>
-            </div>
+
         </main>
     </section>
 </body>
