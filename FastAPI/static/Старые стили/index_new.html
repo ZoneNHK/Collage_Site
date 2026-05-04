@@ -4,140 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>МТК ДонГТУ</title>
-    <link rel="icon" href="/static/image/title_icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/static/style.css">
-    <script src="/static/scripts.js" defer></script>
+    <link rel="icon" href="static/image/title_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/scripts.js" defer></script>
 </head>
 <body>
     <div class="page_wrapper">
     <!-- Шапка -->
-    <header class="head">
+<header class="head">
+    <div class="line"></div>
 
-        <div class="line"></div>
-
+    <div class="head_top">
         <div class="name_head">
-            <img src="/static/image/main_icon.jpg" alt="Изображение не найдено">
+            <img src="static/image/main_icon.jpg" alt="Изображение не найдено">
             <p>Донбасский государственный <br> технический университет</p>
         </div>
 
         <section class="navigation">
-
             <nav class="nav_a">
                 <div class="lst_bot">
                     <a class="name_a_link" href="#ft" id="contc">Контакты</a>
                 </div>
-
-                <div class="lst_bot"  id="studs">
+                <div class="lst_bot" id="studs">
                     <a class="name_a_link" href="#">Студентам</a>
                     <ul class="stud_list">
                         <li><a class="li_a" href="https://3kl.dontu.ru/" target="_blank">Дистанционное обучение</a></li>
                         <li><a class="li_a" href="https://alit.dontu.ru/studentu/zameny" target="_blank">Замены занятий</a></li>
-                        <li><a class="li_a" href="https://alit.dontu.ru/studentu/raspisanie-zanyatij" target="_blank">Расипсание занятий</a></li>
+                        <li><a class="li_a" href="https://alit.dontu.ru/studentu/raspisanie-zanyatij" target="_blank">Расписание занятий</a></li>
                         <li><a class="li_a" href="https://alit.dontu.ru/studentu/raspisanie-zvonkov" target="_blank">Расписание звонков</a></li>
-                    </ul>                    
+                    </ul>
                 </div>
-
                 <div class="lst_bot" id="abits">
                     <a class="name_a_link" href="#">Абитуриентам</a>
                     <ul class="abitur_list">
                         <li><a class="li_a" href="https://alit.dontu.ru/abiturientu/obrashchenie-k-abiturientu" target="_blank">Обращение к абитуриенту</a></li>
                         <li><a class="li_a" href="https://forms.yandex.ru/u/68dfabf7505690487f6e8e45" target="_blank">Анкета абитуриента</a></li>
-                        <li><a class="li_a" href="https://alit.dontu.ru/abiturientu/prijomnaya-komissiya/obshchaya-informatsiya" target="_blank">Отборочнная комиссия</a></li>
+                        <li><a class="li_a" href="https://alit.dontu.ru/abiturientu/prijomnaya-komissiya/obshchaya-informatsiya" target="_blank">Отборочная комиссия</a></li>
                         <li><a class="li_a" href="https://alit.dontu.ru/abiturientu/spetsialnosti" target="_blank">Специальности</a></li>
-                    </ul>                    
+                    </ul>
                 </div>
             </nav>
-
             <button class="menu_a">Меню =</button>
-
         </section>
+    </div>
 
+    <div class="head_bottom">
         <div class="inp_dv">
             <input type="text" placeholder="Введите запрос" class="input_head">
-            <img id="icon_search" src="/static/image/search_icon.png" alt="Изображение не найдено">
+            <img id="icon_search" src="static/image/search_icon.png" alt="Изображение не найдено">
         </div>
+    </div>
 
-        <section class="wind_menu">
-                <!-- Выбор-->
-            <div class="choice_menu">
-                <ul class="chice_lst">
-                    <li><button id="but1" class="menu_but" data-target="studs_link">Студенту</button></li>
-                    <li><button id="but2" class="menu_but" data-target="abitur_links">Абитуриенту</button></li>
-                    <li><button id="but3" class="menu_but" data-target="diatl_links">Наша деятельность</button></li>
-                    <li><button id="but4" class="menu_but" data-target="info_links">Информация о колледже</button></li>
-                    <li><button id="but5" class="menu_but" data-target="sved_links">Сведения об организации</button></li>
-                </ul>
+    <section class="wind_menu">
+        <div class="choice_menu">
+            <ul class="chice_lst">
+                <li><button id="but1" class="menu_but" data-target="studs_link">Студенту</button></li>
+                <li><button id="but2" class="menu_but" data-target="abitur_links">Абитуриенту</button></li>
+                <li><button id="but3" class="menu_but" data-target="diatl_links">Наша деятельность</button></li>
+                <li><button id="but4" class="menu_but" data-target="info_links">Информация о колледже</button></li>
+                <li><button id="but5" class="menu_but" data-target="sved_links">Сведения об организации</button></li>
+            </ul>
+        </div>
+        <div class="output_menu">
+            <div class="menu_welcome" id="menu_welcome">
+                <h3>Навигация по сайту</h3>
+                <p>Выберите раздел слева для получения информации</p>
             </div>
-            <!-- Вывод информации -->
-            <div class="output_menu">
-                <div class="menu_welcome" id="menu_welcome">
-                    <h3>Навигация по сайту</h3>
-                    <p>Выберите раздел слева для получения информации</p>
-                </div>
-                <div class="links_menu" id="studs_link">
-                    <div class="child_link">
-                        <a href="https://3kl.dontu.ru/">Дистанционное обучение</a>
-                        <a href="https://alit.dontu.ru/studentu/zameny">Замены занятий</a>
-                        <a href="https://alit.dontu.ru/studentu/raspisanie-zanyatij">Расписание занятий</a>
-                        <a href="https://alit.dontu.ru/studentu/raspisanie-zvonkov">Расписание звонков</a>                        
-                    </div>
-                </div>
-
-                <div class="links_menu" id="abitur_links">
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/abiturientu/obrashchenie-k-abiturientu">Обращение к абитуриентам</a>
-                        <a href="https://forms.yandex.ru/u/68dfabf7505690487f6e8e45">Анкета абитуриента</a>
-                        <a href="https://alit.dontu.ru/abiturientu/prijomnaya-komissiya/dokumenty">Отборочная комиссия</a>
-                        <a href="https://alit.dontu.ru/abiturientu/spetsialnosti">Специальности</a>
-                    </div>
-                </div>
-
-                <div class="links_menu" id="diatl_links">
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/uchebnaya-deyatelnost">Учебная деятельность</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/profilaktika-pravonarushenij">Профилактика правонарушений</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/patrioticheskoe-vospitanie">Патриотическое воспитание</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/volonterstvo">Волонтерство</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/trudovoe-vospitanie">Трудовое воспитание</a>
-                    </div>
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/sportivnaya-zhizn">Спортивная жизнь</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/kulturnaya-zhizn">Культурная жизнь</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/proforientatsionnaya-rabota">Профориентационная работа</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/psikhologicheskaya-sluzhba">Психологическая служба</a>
-                        <a href="https://alit.dontu.ru/nasha-deyatelnost/bezopasnost-zhiznedeyatelnosti">Здоровый образ жизни</a>
-                    </div>
-                </div>
-
-                <div class="links_menu" id="info_links">
-                        <a href="https://alit.dontu.ru/tekhnikum/informatsiya/obshchaya">Общая информация</a>
-                        <a href="https://alit.dontu.ru/tekhnikum/administratsiya">Администрация и педколлектив</a>
-                        <a href="https://islod.obrnadzor.gov.ru/accredreestr/details/0B10120E-0E0C-0E10-0E10-0D0F1112100A100F110A/1/">Лицензия</a>
-                        <a href="https://alit.dontu.ru/#">Отделения</a>
-                        <a href="https://alit.dontu.ru/tekhnikum/materialnaya-baza/uchebnyj-korpus">Учебный корпус</a>
-                </div>
-                <div class="links_menu" id="sved_links">
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/sveden/common">Основные сведения</a>
-                        <a href="https://alit.dontu.ru/sveden/struct">Структура и органы управления образовательной организацией</a>
-                        <a href="https://alit.dontu.ru/sveden/document">Документы</a>
-                        <a href="https://alit.dontu.ru/sveden/education">Образование</a>
-                        <a href="https://alit.dontu.ru/sveden/vnutrennyaya-sistema-otsenki-kachestva-obrazovaniya">Внутренняя система оценки качества образования</a>
-                    </div>
-                    <div class="child_link">
-                        <a href="https://alit.dontu.ru/sveden/edustandarts">Образовательные стандарты</a>
-                        <a href="https://alit.dontu.ru/sveden/employees">Руководство. Педагогический (научно-педагогический) состав</a>
-                        <a href="https://alit.dontu.ru/sveden/grants">Стипендии и меры поддержки обучающихся</a>
-                        <a href="https://alit.dontu.ru/sveden/paidedu">Платные образовательные услуги</a>
-                        <a href="https://alit.dontu.ru/sveden/budget">Финансово-хозяйственная деятельность</a>
-                    </div>
+            <div class="links_menu" id="studs_link">
+                <div class="child_link">
+                    <a href="https://3kl.dontu.ru/">Дистанционное обучение</a>
+                    <a href="https://alit.dontu.ru/studentu/zameny">Замены занятий</a>
+                    <a href="https://alit.dontu.ru/studentu/raspisanie-zanyatij">Расписание занятий</a>
+                    <a href="https://alit.dontu.ru/studentu/raspisanie-zvonkov">Расписание звонков</a>
                 </div>
             </div>
-            <div>
-                <button id="exit_but">Закрыть</button>
+            <div class="links_menu" id="abitur_links">
+                <div class="child_link">
+                    <a href="https://alit.dontu.ru/abiturientu/obrashchenie-k-abiturientu">Обращение к абитуриентам</a>
+                    <a href="https://forms.yandex.ru/u/68dfabf7505690487f6e8e45">Анкета абитуриента</a>
+                    <a href="https://alit.dontu.ru/abiturientu/prijomnaya-komissiya/dokumenty">Отборочная комиссия</a>
+                    <a href="https://alit.dontu.ru/abiturientu/spetsialnosti">Специальности</a>
+                </div>
             </div>
-        </section>
-    </header>
+            <div class="links_menu" id="diatl_links">
+                <div class="child_link">
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/uchebnaya-deyatelnost">Учебная деятельность</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/profilaktika-pravonarushenij">Профилактика правонарушений</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/patrioticheskoe-vospitanie">Патриотическое воспитание</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/volonterstvo">Волонтерство</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/trudovoe-vospitanie">Трудовое воспитание</a>
+                </div>
+                <div class="child_link">
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/sportivnaya-zhizn">Спортивная жизнь</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/kulturnaya-zhizn">Культурная жизнь</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/proforientatsionnaya-rabota">Профориентационная работа</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/psikhologicheskaya-sluzhba">Психологическая служба</a>
+                    <a href="https://alit.dontu.ru/nasha-deyatelnost/bezopasnost-zhiznedeyatelnosti">Здоровый образ жизни</a>
+                </div>
+            </div>
+            <div class="links_menu" id="info_links">
+                <a href="https://alit.dontu.ru/tekhnikum/informatsiya/obshchaya">Общая информация</a>
+                <a href="https://alit.dontu.ru/tekhnikum/administratsiya">Администрация и педколлектив</a>
+                <a href="https://islod.obrnadzor.gov.ru/accredreestr/details/0B10120E-0E0C-0E10-0E10-0D0F1112100A100F110A/1/">Лицензия</a>
+                <a href="https://alit.dontu.ru/#">Отделения</a>
+                <a href="https://alit.dontu.ru/tekhnikum/materialnaya-baza/uchebnyj-korpus">Учебный корпус</a>
+            </div>
+            <div class="links_menu" id="sved_links">
+                <div class="child_link">
+                    <a href="https://alit.dontu.ru/sveden/common">Основные сведения</a>
+                    <a href="https://alit.dontu.ru/sveden/struct">Структура и органы управления</a>
+                    <a href="https://alit.dontu.ru/sveden/document">Документы</a>
+                    <a href="https://alit.dontu.ru/sveden/education">Образование</a>
+                    <a href="https://alit.dontu.ru/sveden/vnutrennyaya-sistema-otsenki-kachestva-obrazovaniya">Внутренняя система оценки</a>
+                </div>
+                <div class="child_link">
+                    <a href="https://alit.dontu.ru/sveden/edustandarts">Образовательные стандарты</a>
+                    <a href="https://alit.dontu.ru/sveden/employees">Руководство. Педсостав</a>
+                    <a href="https://alit.dontu.ru/sveden/grants">Стипендии и меры поддержки</a>
+                    <a href="https://alit.dontu.ru/sveden/paidedu">Платные образовательные услуги</a>
+                    <a href="https://alit.dontu.ru/sveden/budget">Финансово-хозяйственная деятельность</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id="exit_but">Закрыть</button>
+        </div>
+    </section>
+</header>
 
     <section class="image_container">
         <div class="left_images">
@@ -192,7 +185,7 @@
         <div class="bottom" id="bottom">
             <!-- Строительство -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/1.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/1.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2075-mto-3" target="_blank"><h2>Строители</h2></a>
                     <p>Специалисты по возведению и реконструкции зданий и сооружений. Работают с современными строительными материалами и технологиями.</p>
@@ -200,7 +193,7 @@
             </div>
             <!-- Программирование -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/2.png" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/2.png" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/87-pks" target="_blank"><h2>Программисты</h2></a>
                     <p>Разработчики программного обеспечения и компьютерных систем. Осваивают актуальные языки программирования и работу с базами данных.</p>
@@ -208,7 +201,7 @@
             </div>
             <!-- Электрики -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/3.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/3.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/81-teo" target="_blank"><h2>Электрики</h2></a>
                     <p>Специалисты по монтажу и обслуживанию электрооборудования. Востребованы на промышленных предприятиях и в сфере ЖКХ.</p>
@@ -216,7 +209,7 @@
             </div>
             <!-- Монтажники -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/4.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/4.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/85-mto" target="_blank"><h2>Монтажники</h2></a>
                     <p>Профессионалы по установке и наладке технологического оборудования. Работают на производственных и строительных объектах.</p>
@@ -224,7 +217,7 @@
             </div>
             <!-- Сварщики -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/5.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/5.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2074-mto-2" target="_blank"><h2>Сварщики</h2></a>
                     <p>Мастера соединения металлических конструкций различными методами сварки. Незаменимы в машиностроении, строительстве и металлургии.</p>
@@ -232,7 +225,7 @@
             </div>
             <!-- Металлургическое производство -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/6.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/6.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/82-mchm" target="_blank"><h2>Металлурги</h2></a>
                     <p>Специалисты по производству и обработке металлов. Работают на крупных промышленных предприятиях металлургической отрасли.</p>
@@ -240,7 +233,7 @@
             </div>
             <!-- Экономика и бухгалтерский учет -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/7.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/7.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/86-ep" target="_blank"><h2>Экономисты</h2></a>
                     <p>Специалисты в области финансов, учёта и экономического анализа. Востребованы в организациях любой сферы деятельности.</p>
@@ -248,7 +241,7 @@
             </div>
             <!-- Юриспруденция -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/8.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/8.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2076-mto-4" target="_blank"><h2>Юристы</h2></a>
                     <p>Специалисты в области права и законодательства. Работают в государственных структурах, юридических фирмах и на предприятиях.</p>
@@ -256,7 +249,7 @@
             </div>
             <!-- Мастер отделочных строительных и декоративных работ -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/9.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/9.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2078-ep-2" target="_blank"><h2>Мастера отделки</h2></a>
                     <p>Профессионалы по внутренней и декоративной отделке помещений. Владеют современными материалами и техниками оформления интерьеров.</p>
@@ -264,7 +257,7 @@
             </div>
             <!-- Мастер по ремонту и обслуживанию авто -->
             <div class="card_info">
-                <div><img src="/static/image/card_info/10.jpg" alt="Не найдено"></div>
+                <div><img src="static/image/card_info/10.jpg" alt="Не найдено"></div>
                 <div class="right_card">
                     <a href="https://alit.dontu.ru/abiturientu/spetsialnosti/2081-ep-5" target="_blank"><h2>Автомеханики</h2></a>
                     <p>Специалисты по диагностике, ремонту и обслуживанию автомобилей. Работают на станциях технического обслуживания и автопредприятиях.</p>
@@ -284,8 +277,8 @@
             <p>© Многопрофильный технологический колледж ФГБОУ ВО "ДонГТУ", 2013 - 2026</p>
         </div>
         <div id="img_footer">
-            <a target="_blank" href="https://vk.com/itdongtu"><img src="/static/image/vk.png" alt="Не найдено"></a>
-            <a target="_blank" href="https://t.me/aitdongtu"><img src="/static/image/tg.png" alt="Не найдено"></a>
+            <a target="_blank" href="https://vk.com/itdongtu"><img src="static/image/vk.png" alt="Не найдено"></a>
+            <a target="_blank" href="https://t.me/aitdongtu"><img src="static/image/tg.png" alt="Не найдено"></a>
             <a target="_blank" href="https://vk.com/away.php?to=https%3A%2F%2Fmax.ru%2Fid9406003464_biz&utf=1"><img src="/static/image/max.png" alt="Не найдено"></a>
         </div>
     </footer>

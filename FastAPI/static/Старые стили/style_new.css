@@ -33,13 +33,24 @@ body{
     background-color: white;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
 }
-.head{
-    margin: 0 auto;
-    max-width: 1300px;
-    width: 100%;
-    max-height: 350px;
-    height: 100%;
+.head {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 550px;
+}
 
+.head_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.head_bottom {
+    display: flex;
+    justify-content: center;
 }
 .line{
     max-width: 1155px;
@@ -55,7 +66,6 @@ body{
     width: 100%;
     max-width: 550px;
     cursor: pointer;
-    /* border: 1px solid red; */
 }
 .name_head img{
     width: 250px;
@@ -98,9 +108,6 @@ li{
     flex-direction: row;
     gap: 20px;
     justify-content: right;
-    position: relative;
-    right: 25px;
-    bottom: 235px;
     align-items: center;
 }
 
@@ -108,6 +115,7 @@ li{
     display: flex;
     flex-direction: row;
     gap: 35px;
+    margin-bottom: 145px;
 }
 
 .name_a_link{
@@ -147,11 +155,10 @@ li{
     border-radius: 11px;
     width: 100px;
     height: 25px;
-    text-align: center;
     cursor: pointer;
     transition: 0.5s ease-in-out;
     border: none;
-    margin-bottom: 75px;
+    margin-bottom: 220px;
 }
 .menu_a:hover{
     background-color: rgb(5, 105, 177);
@@ -170,21 +177,18 @@ li{
     font-weight: bold;
     color: rgb(5, 105, 177);
 }
-#icon_search{
+
+#icon_search, #icon_search2{
     width: 20px;
     height: 20px;
-    margin-top: 8px;
     position: absolute;
-    left: 870px;
-}
-#icon_search2{
-    width: 23px;
-    height: 23px;
-    margin-top: 15px;
-    position: absolute;
-    left: 960px;
+    right: 10px;
+    top: 50%;
+    margin-top: 76px;
+    transform: translateY(-50%);
 }
 .input_head{
+    margin-top: 150px;
     width: 500px;
     height: 35px;
     border-radius: 5px;
@@ -209,23 +213,20 @@ li{
 }
 
 /* Секция для меню */
-.wind_menu{
-    transform: translateY(-320%);
+.wind_menu {
     display: flex;
-    position: relative;
-    bottom: 275px;
+    flex-direction: row;
     width: 100%;
     max-width: 1300px;
-    height: 100%;
-    max-height: 350px;
-    border-radius: 5px;
-    background-color: rgb(5, 105, 177); 
-    flex-direction: row;
+    height: 350px;
+    background-color: rgb(5, 105, 177);
     border-radius: 10px;
-    transition: 0.5s ease-in-out;
+    transform: translateY(-250%);
+    transition: transform 0.4s ease;
 }
-.wind_menu.active{
-    transform: translateY(-30%);
+
+.wind_menu.active {
+    transform: translateY(-130%);
 }
 .choice_menu{
     width: 30%;
@@ -344,8 +345,8 @@ li{
     max-height: 350px;
     height: 100%;
     justify-content: space-around;
-    margin-top: 200px;
-    margin-bottom: 80px;
+    margin-top: 50px;
+    margin-bottom: 65px;
 }
 .scroll_img{
     display: flex;
@@ -381,7 +382,8 @@ li{
 
 /* Секция с основной информацией */
 .main{
-    height: 1000px;
+    height: 100%;
+    max-height: 1000px;
     width: 100%;
     max-width: 1300px;
     padding: 0 20px;
@@ -872,34 +874,101 @@ li{
     stroke: white;
     fill: none;
 }
-@media (max-width: 700px){
-    * {
-        outline: 1px solid red;
-    }
-    .image_container {
-        flex-direction: column-reverse;
-    }
-    #post{
-        max-width: 700px;
-    }
-    #post p{
-        font-size: 16px;
-    }
+@media (max-width: 700px) {
+
+    /* Хедер */
     .nav_a {
         display: none;
     }
-    .navigation {
-        position: static; /* убирает relative позиционирование */
-        justify-content: flex-end;
+    .head_top {
         padding: 10px;
     }
-    .wind_menu {
-        position: static;
-        transform: none;
-        display: none;
+    .name_head img {
+        width: 60px;
+        height: 60px;
     }
-    .wind_menu.active {
-        display: flex;
+    .name_head p {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    .input_head {
+        width: 280px;
+    }
+
+    /* Преимущества */
+    .image_container {
         flex-direction: column;
-    }    
+        align-items: center;
+        margin-top: 20px;
+    }
+    .scroll_img {
+        width: 100%;
+        height: auto;
+    }
+    #img_src {
+        width: 100%;
+        height: auto;
+    }
+    .right_txt {
+        width: 90%;
+        padding: 0 16px;
+    }
+
+    /* Статистика */
+    .stats {
+        width: 100%;
+        padding: 30px 16px;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .stat_item {
+        border-right: none;
+        padding-right: 0;
+        width: 40%;
+    }
+
+    /* Новости */
+    .main h2 {
+        font-size: 24px;
+        padding: 16px;
+    }
+    .news_card {
+        flex-direction: column;
+    }
+    .news_img {
+        width: 100%;
+        height: 180px;
+    }
+
+    /* Карточки специальностей
+    .card_info {
+        width: 280px;
+        flex-direction: column;
+    }
+    .card_info img {
+        width: 100%;
+        height: 150px;
+    } */
+
+    /* Футер */
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 16px;
+        gap: 10px;
+    }
+    #p_footer {
+        margin-top: 0;
+    }
+    #img_footer img {
+        margin-top: 0;
+    }
+
+    /* Бот */
+    #card_bot {
+        width: 95vw;
+        right: 2.5vw;
+    }
 }

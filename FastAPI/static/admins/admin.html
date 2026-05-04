@@ -27,20 +27,30 @@
                 <div id="right">
 
                     <div id="post_link" class="links">   
+                        <div id="search_post_div">
+                            <h3>Посты</h3><br>
+                            <input type="text" id="search_post" placeholder="Найти...">
+                            <button id="res_seach_post" class="addBut">Поиск</button> 
+                            <button onclick="loadPosts()" class="addBut">Показать все</button>                            
+                        </div>
                         <div id="post_add">
-                            <h3>Посты</h3>
-                            <input type="text" id="post_foto" placeholder="Путь к фото">
+                            <input type="file" id="post_foto" accept=".jpg,.jpeg,.png">
                             <input type="text" id="post_head" placeholder="Заголовок">
                             <textarea id="post_cont" placeholder="Текст"></textarea>
+                            <input type="text" id="post_link" placeholder="Ссылка">
                             <button id="addPost" class="addBut">Добавить</button>
                         </div>
                         <div id="post_list"></div>
                     </div>
 
                     <div id="teach_link" class="links">
-                        
+                        <div id="search_teacher_div">
+                            <h3>Преподаватели</h3><br>
+                            <input type="text" id="search_teach" placeholder="Найти...">
+                            <button id="res_seach_teach" class="addBut">Поиск</button>    
+                            <button onclick="loadTeachers()" class="addBut">Показать все</button>                        
+                        </div>                        
                         <div id="teach_add">
-                            <h3>Преподаватели</h3>
                             <input type="text" id="teach_surn" placeholder="Введите фамилию">
                             <input type="text" id="teach_name" placeholder="Введите имя">
                             <input type="number" id="teach_spec" placeholder="Введите номер специальности">
@@ -50,8 +60,13 @@
                     </div>
 
                     <div id="special_link" class="links">
+                        <div id="search_specialty_div">
+                            <h3>Специальности</h3><br>
+                            <input type="text" id="search_spec" placeholder="Найти...">
+                            <button id="res_seach_spec" class="addBut">Поиск</button>
+                            <button onclick="loadSpecialties()" class="addBut">Показать все</button>  
+                        </div>
                         <div id="special_add">
-                            <h3>Специальности</h3>
                             <input type="text" id="spec_title" placeholder="Введите название">
                             <textarea id="spec_desc" placeholder="Описание"></textarea>
                             <button id="addSpecialty" class="addBut">Добавить</button>

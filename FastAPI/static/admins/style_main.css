@@ -78,7 +78,7 @@ body{
     border-bottom: 1px solid rgba(158, 156, 156, 0.5);
     margin: 0;
 }
-#post_add, #teach_add, #special_add {
+#post_add, #teach_add, #special_add, #search_post_div, #search_teacher_div, #search_specialty_div{
     display: flex;
     gap: 10px;
     padding: 10px 15px;
@@ -88,7 +88,7 @@ body{
 }
 
 #post_add input, #teach_add input, #special_add input,
-#post_add textarea, #special_add textarea {
+#post_add textarea, #special_add textarea, #search_post, #search_teach, #search_spec{
     border: 1px solid rgba(158, 156, 156, 0.8);
     border-radius: 6px;
     padding: 6px 10px;
@@ -128,7 +128,7 @@ body{
     display: flex;
 }
 
-#post{
+.post{
     width: 1240px;
     margin-top: 35px;
     border-radius: 8px;
@@ -143,6 +143,11 @@ body{
 }
 .du_info h3{
     margin: 0;
+}
+.div_crud{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 #hr_div{
     width: 100%;
@@ -165,7 +170,7 @@ body{
 #post p{
     margin-bottom: 5px;
 }
-#card_info{
+.card_info{
     display: flex;
     gap: 15px;
     flex-direction: row;
@@ -182,4 +187,11 @@ body{
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+.news_img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
 }

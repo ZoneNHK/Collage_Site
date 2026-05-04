@@ -8,6 +8,9 @@ from sqlalchemy import select, delete, or_, and_, func
 from pydantic import BaseModel, Field, field_validator, model_validator
 from fastapi.middleware.cors import CORSMiddleware as corsMid
 from admin import hash_password, verify_password, create_token, verify_token
+from fastapi import File, UploadFile, Form
+import shutil
+import os
 
 app = FastAPI()
 
@@ -54,6 +57,7 @@ class Model_Post(BaseModel):
 class Model_Teach(BaseModel):
     surname: str
     name: str
+    otch: str
     id_specialty: int
 class Model_Special(BaseModel):
     title: str
@@ -72,53 +76,60 @@ async def post_pt(model: Model_Post, db: AsyncSession = Depends(get_db)):
     await db.refresh(posts)
     return {"id": posts.id_posts, "foto": posts.foto, "headerP": posts.headerP, "contentP": posts.contentP}
 
-# @app.get("/posts")
-# async def get_pt(db: AsyncSession = Depends(get_db)):
-#     res = await db.execute(select(Posts))
-#     posts = res.scalars().all()
-#     return posts
-
+# Проверка списка на пустоту
+async def check_list(lst):
+    if not lst:
+        raise HTTPException(status_code=404, detail="По вашему запросу ничего не найдено")
+    return lst
 
 @app.get("/search/teachers")
-async def search_teach(name: str = None, surname: str = None, db: AsyncSession = Depends(get_db)):
-    condit = []
-    if name:
-        condit.append(Teacher.name.ilike(f"%{name}%"))
-    if surname:
-        condit.append(Teacher.surname.ilike(f"%{surname}%"))
-    query = await db.execute(select(Teacher).where(or_(*condit)))
+async def search_teach(name: str = None, surname: str = None, otch: str=None, db: AsyncSession = Depends(get_db)):
+    result = []
+    query = await db.execute(select(Teacher))
     teacher = query.scalars().all()
-    await proverka(teacher)
-    return teacher
+    if not any([name, surname, otch]):
+        return teacher
+    for t in teacher:
+        if name and name.lower() in t.name.lower():
+            result.append(t)
+        elif surname and surname.lower() in t.surname.lower():
+            result.append(t)
+        elif otch and otch.lower() in t.otch.lower():
+            result.append(t)
+    return result
     
 @app.get("/search/specialty")
 async def search_spec(title: str = None, desc: str = None, db: AsyncSession = Depends(get_db)):
-    condit = []
-    if title:
-        condit.append(Specialty.title.ilike(f"%{title}%"))
-    if desc:
-        condit.append(Specialty.description.ilike(f"%{desc}%"))
-    query = await db.execute(select(Specialty).where(or_(*condit)))
+    result = []
+    query = await db.execute(select(Specialty))
     specialty = query.scalars().all()
-    await proverka(specialty)
-    return specialty
+    if not any([title, desc]):
+        return specialty
+    for s in specialty:
+        if title and title.lower() in s.title.lower():
+            result.append(s)
+        elif desc and desc.lower() in s.description.lower():
+            result.append(s)
+    return result
 
 @app.get("/search/posts")
 async def search_post(head: str = None, cont: str = None, db: AsyncSession = Depends(get_db)):
-    condit = []
-    if head:
-        condit.append(Posts.headerP.ilike(f"%{head}%"))
-    if cont:
-        condit.append(Posts.contentP.ilike(f"%{cont}%"))
-    query = await db.execute(select(Posts).where(or_(*condit)))
+    result = []
+    query = await db.execute(select(Posts).order_by(Posts.id_post.desc()))
     post = query.scalars().all()
-    await proverka(post)
-    return post
+    if not any([head, cont]):
+        return post
+    for p in post:
+        if head and head.lower() in p.headerP.lower():
+            result.append(p)
+        elif cont and cont.lower() in p.contentP.lower():
+            result.append(p)
+    return result
 
 @app.get('/posts')
 async def get_post(page: int = 1, limit: int = 3, db: AsyncSession = Depends(get_db)):
     offset = (page - 1) * limit
-    result = await db.execute(select(Posts).offset(offset).limit(limit))
+    result = await db.execute(select(Posts).order_by(Posts.id_post.desc()).offset(offset).limit(limit))
     posts = result.scalars().all()
     count = await db.execute(select(func.count()).select_from(Posts))
     total = count.scalar()
@@ -168,21 +179,46 @@ async def get_admin_posts(login: str = Depends(verify_token), db: AsyncSession =
     return await get_data(Posts, db)
 
 @app.post("/admin/posts")
-async def post_admin_posts(model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
-    post = Posts(foto=model.foto, headerP=model.hedP, contentP=model.contP)
+async def post_admin_posts(
+                foto: UploadFile = File(...),
+                hedP: str = Form(...),
+                contP: str = Form(...),
+                lk: str = Form(...),
+                login: str = Depends(verify_token), 
+                db: AsyncSession = Depends(get_db)
+            ):
+    os.makedirs("static/images", exist_ok=True)
+    foto_path = f"static/images/{foto.filename}"
+    with open(foto_path, "wb") as f:
+        shutil.copyfileobj(foto.file, f)
+    post = Posts(foto=foto_path, headerP=hedP, contentP=contP, links=lk)
     db.add(post)
     await db.commit()
     await db.refresh(post)
     return {"id": post.id_post, "foto": post.foto, "headerP": post.headerP, "contentP": post.contentP}
 
 @app.put("/admin/posts")
-async def put_admin_post(id: int, model: Model_Post, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
+async def put_admin_post(
+        id: int, 
+        foto: UploadFile = File(None),
+        hedP: str = Form(...),
+        contP: str = Form(...),
+        lk: str = Form(...),
+        login: str = Depends(verify_token), 
+        db: AsyncSession = Depends(get_db)
+    ):
     query = await db.execute(select(Posts).where(Posts.id_post == id))
     post = query.scalar_one_or_none()
     await proverka(post)
-    post.foto = model.foto
-    post.headerP = model.hedP
-    post.contentP = model.contP
+    if foto and foto.filename:
+        os.makedirs("static/images", exist_ok=True)
+        foto_path = f"static/images/{foto.filename}"
+        with open(foto_path, "wb") as f:
+            shutil.copyfileobj(foto.file, f)
+        post.foto = foto_path
+    post.headerP = hedP
+    post.contentP = contP
+    post.links = lk
     await db.commit()
     return {"message": 'Запись успешно изменена'}
 
@@ -202,11 +238,11 @@ async def get_admin_teach(login: str = Depends(verify_token), db: AsyncSession =
 
 @app.post('/admin/teacher')
 async def post_admin_teach(model: Model_Teach, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
-    query = Teacher(surname=model.surname, name=model.name, id_specialty=model.id_specialty)
+    query = Teacher(surname=model.surname, name=model.name, otch=model.otch, id_specialty=model.id_specialty)
     db.add(query)
     await db.commit()
     await db.refresh(query)
-    return {"id": query.id_teacher, "surname": query.surname, "name": query.name, "id_specialty": query.id_specialty}
+    return {"id": query.id_teacher, "surname": query.surname, "name": query.name, "otch": query.otch, "id_specialty": query.id_specialty}
 
 @app.delete('/admin/teacher')
 async def del_admin_teach(id: int, login: str = Depends(verify_token), db: AsyncSession = Depends(get_db)):
@@ -224,6 +260,7 @@ async def put_admin_teach(id: int, model: Model_Teach, login: str = Depends(veri
     await proverka(teach)
     teach.surname = model.surname
     teach.name = model.name
+    teach.otch = model.otch
     teach.id_specialty = model.id_specialty
     await db.commit()
     return {'message': 'Запись успешно изменена'}
@@ -259,3 +296,46 @@ async def put_admin_spec(id: int, model: Model_Special, login: str = Depends(ver
     special.description = model.description
     await db.commit()
     return {'message': 'Запись успешно изменена'}    
+
+
+# Поиск Постов
+@app.get('/admin/search/post')
+async def admin_search_post(hdP: str=None, ctP: str=None, login: str=Depends(verify_token), db: AsyncSession=Depends(get_db)):
+    result = []
+    query = await db.execute(select(Posts))
+    post = query.scalars().all()
+    for p in post:
+        if hdP and hdP.lower() in p.headerP.lower():
+            result.append(p)
+        elif ctP and ctP.lower() in p.contentP.lower():
+            result.append(p)
+    await check_list(result)
+    return result
+
+# Поиск Преподавателей
+@app.get('/admin/search/teacher')
+async def admin_search_teach(surname: str=None, name: str=None, login: str=Depends(verify_token), db: AsyncSession=Depends(get_db)):
+    result = []
+    query = await db.execute(select(Teacher))
+    teacher = query.scalars().all()
+    for t in teacher:
+        if surname and surname.lower() in t.surname.lower():
+            result.append(t)
+        elif name and name.lower() in t.name.lower():
+            result.append(t)
+    await check_list(result)
+    return result
+
+# Поиск Специальностей
+@app.get('/admin/search/specialty')
+async def admin_search_spec(tit: str=None, desc: str=None, login: str=Depends(verify_token), db: AsyncSession=Depends(get_db)):
+    result = []
+    query = await db.execute(select(Specialty))
+    specialty = query.scalars().all()
+    for s in specialty:
+        if tit and tit.lower() in s.title.lower():
+            result.append(s)
+        elif desc and desc.lower() in s.description.lower():
+            result.append(s)
+    await check_list(result)
+    return result
